@@ -17,6 +17,7 @@ public class Display : MonoBehaviour {
 	private int startAge = 16;
 	public int deathYear;
 	public int deathMonth;
+	public int jumpTime;
 
 	public float time;
 	public int count;
@@ -89,6 +90,7 @@ public class Display : MonoBehaviour {
 	private int monthsSinceBirth;
 	public bool canHaveBabies;
 	public bool startTime;
+	public float maxHappiness;
 
 	public InputField inputName;
 	public InputField inputMonth;
@@ -136,6 +138,10 @@ public class Display : MonoBehaviour {
 		durationMonths = 0;
 		durationYears = 0;
 		fastForwardCount = 0;
+		partner.exName = "";
+		partner.exDuration = 0;
+		maxHappiness = 50;
+		jumpTime = 5;
 	}
 	
 
@@ -378,11 +384,29 @@ public class Display : MonoBehaviour {
 					pregnancyCount = 9;
 				}
 			}
-			// career.Focus();
+
+			if ( relationship.playerHappiness > maxHappiness )
+			{
+				maxHappiness = relationship.playerHappiness;
+			}
+
 			monthsSinceBirth++;
 			CanHaveBabies();
 			talk.TextUpdate();
 			talk.Speak();
+
+			if (career.careerCoolDown >=0 )
+			{
+				career.careerCoolDown--;
+			}
+			if (career.CareerFocus == true)
+			{
+				career.Focus();
+			}
+			if (relationship.invest == true)
+			{
+				relationship.Invest();
+			}
 
 			if (quickTime == true) {
 				if (fastForwardCount > 0) {
@@ -452,7 +476,7 @@ public class Display : MonoBehaviour {
 
 	public void BreakUp()
 	{
-		if (partner.exDuration <= duration )
+		if (maxHappiness > partner.exHappiness )
 		{
 			partner.CreateEx();
 		}
@@ -482,6 +506,7 @@ public class Display : MonoBehaviour {
 		inARelationship = false;
 		talk.lastEventCount = 0;
 		talk.Speak();
+		maxHappiness = 50;
 	}
 
 	public void Dumped()
@@ -576,7 +601,7 @@ public class Display : MonoBehaviour {
 		if ( quickTime == false )
 		{
 			quickTime = true;
-			fastforward = 5;
+			fastforward = jumpTime;
 			fastForwardCount = 5;
 		}
 		else

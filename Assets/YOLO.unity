@@ -1676,7 +1676,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &552064263
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2713,6 +2713,7 @@ MonoBehaviour:
   age: 0
   deathYear: 0
   deathMonth: 0
+  jumpTime: 0
   time: 0
   count: 0
   alive: 1
@@ -2779,6 +2780,7 @@ MonoBehaviour:
   startButton: {fileID: 1538133078}
   canHaveBabies: 0
   startTime: 0
+  maxHappiness: 0
   inputName: {fileID: 1560544468}
   inputMonth: {fileID: 406214162}
   inputYear: {fileID: 969615345}
@@ -2840,6 +2842,7 @@ MonoBehaviour:
   exDuration: 0
   relationshipText: {fileID: 1700750863}
   canvas: {fileID: 827084607}
+  exHappiness: 0
 --- !u!114 &827084614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2895,6 +2898,7 @@ MonoBehaviour:
   CareerFocus: 0
   careerCoolDown: 0
   canvas: {fileID: 827084607}
+  relationshipText: {fileID: 1700750863}
 --- !u!1 &832987241
 GameObject:
   m_ObjectHideFlags: 0
@@ -6378,7 +6382,6 @@ GameObject:
   - 224: {fileID: 1833755977}
   - 222: {fileID: 1833755979}
   - 114: {fileID: 1833755978}
-  - 114: {fileID: 1833755980}
   m_Layer: 5
   m_Name: DeathPanel
   m_TagString: Untagged
@@ -6440,29 +6443,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1833755976}
---- !u!114 &1833755980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1833755976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -2095666955, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 4
-  m_StartCorner: 0
-  m_StartAxis: 1
-  m_CellSize: {x: 500, y: 100}
-  m_Spacing: {x: 0, y: 50}
-  m_Constraint: 0
-  m_ConstraintCount: 2
 --- !u!1 &1865513761
 GameObject:
   m_ObjectHideFlags: 0

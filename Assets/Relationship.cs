@@ -52,16 +52,17 @@ public class Relationship : MonoBehaviour {
 		invest = false;
 	}
 	
-	void FixedUpdate()
+	public void Invest()
 	{
-		if ( countdown > 0)
+		if ( countdown >= 0)
 		{
-			countdown -= Time.deltaTime;
+			countdown --;
 		}
-		if ( countdown <= 0 && button.GetComponent<Button>().IsInteractable() == false)
+		if ( countdown < 0 && button.GetComponent<Button>().IsInteractable() == false)
 		{
 			button.GetComponent<Button>().interactable = true;
 			options.buttonActivate();
+			career.buttonActive();
 			invest = false;
 		}
 	}
@@ -78,9 +79,10 @@ public class Relationship : MonoBehaviour {
 	{
 		button.GetComponent<Button>().interactable = false;
 		career.careerCoolDown = 2f;
-		countdown = 2f;
+		countdown = display.jumpTime;
 		options.buttonDisactivate();
 		invest = true;
+		career.buttonInactive();
 		talk.lastEvent = "Invest";
 		talk.lastEventCount = 2;
 		talk.Speak();
@@ -104,7 +106,6 @@ public class Relationship : MonoBehaviour {
 		{
 			display.getMarriedButton.SetActive(true);
 		}
-		Debug.Log("player happiness: " + playerHappiness + "; partner happiness: " + partnerHappiness);
 	}
 
 	public float Mood( float[] myvalues, float[] yourvalues, float myHappiness) 
@@ -148,5 +149,15 @@ public class Relationship : MonoBehaviour {
 			}
 		}
 		return myRating;
+	}
+
+	public void buttonActive()
+	{
+		button.GetComponent<Button>().interactable = true;
+	}
+
+	public void buttonInactive()
+	{
+		button.GetComponent<Button>().interactable = false;
 	}
 }

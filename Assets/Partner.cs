@@ -37,6 +37,7 @@ public class Partner : MonoBehaviour {
 	private Career career;
 	public GameObject relationshipText;
 	public GameObject canvas;
+	public float exHappiness;
 
 	void Start ()
 	{
@@ -47,6 +48,7 @@ public class Partner : MonoBehaviour {
 		partnerChildren = 0;
 		exDuration = 0;
 		wealthGap = 0;
+		exHappiness = 0;
 	}
 
 	public void Birth() 
@@ -109,6 +111,7 @@ public class Partner : MonoBehaviour {
 	{
 		exName = partnerName;
 		exDuration = display.duration;
+		exHappiness = display.maxHappiness;
 		for (int i =0; i <4; i++)
 		{
 			exvalue[i] = aspectvalue[i];

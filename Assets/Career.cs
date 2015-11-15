@@ -13,86 +13,94 @@ public class Career : MonoBehaviour {
 	public GameObject canvas;
 	private Options options;
 	private Display display;
+	private Relationship relationship;
+	public GameObject relationshipText;
 	private Talk talk;
 	
 	void Start () 
 	{
 		careerCoolDown = 0;
-		countdown = 1;
+		countdown = 0;
 		button.GetComponent<Button>().interactable = true;
 		buttonImage.SetActive(false);
 		options = canvas.GetComponent<Options>();
 		display = canvas.GetComponent<Display>();
+		relationship = relationshipText.GetComponent<Relationship>();
 		talk = canvas.GetComponent<Talk>();
+		CareerFocus = false;
 	}
 
 	void Update ()
 	{
-		if ( display.age <= 18 )
+		if ( display.age >= 18 && display.age <= 65)
+		{	
+			buttonImage.SetActive(true);
+		}
+		else
 		{
 			buttonImage.SetActive(false);
 			return;
 		}
-		else
-		{
-			buttonImage.SetActive(true);
-		}
-
-		if (button.GetComponent<Button>().IsInteractable() == false)
-		{
-			CareerFocus = true;
-		}
-		else 
-		{
-			CareerFocus = false;
-		}
 
 		if ( careerCoolDown > 0 )
 		{
-			buttonImage.SetActive(false);
+			button.GetComponent<Button>().interactable = false;
 		}
 		else 
 		{
-			buttonImage.SetActive(true);
+			if ( CareerFocus == false && relationship.invest == false)
+			{
+				button.GetComponent<Button>().interactable = true;
+			}
 		}
 	}
 
-	void FixedUpdate()
+	public void Focus()
 	{
-		if (button.GetComponent<Button>().IsInteractable() == false)
+		if (countdown >= 0)
 		{
-			countdown -= Time.deltaTime;
+			display.aspectvalue[4] += 0.5f;
+			button.GetComponent<Button>().interactable = false;
+			relationship.buttonInactive();
+			countdown--;
 		}
-		if (countdown <= 0)
+		else
 		{
 			button.GetComponent<Button>().interactable = true;
-			display.aspectvalue[4] += 1f;
 			options.buttonActivate();
+			CareerFocus = false;
+			relationship.buttonActive();
 			if (display.colorName.a > 0.1)
 			{
-				CareerFocus = false;
 				options.On();
 			}
 			if (display.inARelationship == true)
 			{
 				display.datingPanel.SetActive(true);
 			}
-			countdown = 2f;
-		}
-		if ( careerCoolDown > 0)
-		{
-			careerCoolDown -= Time.deltaTime;
 		}
 	}
 
 	public void StartFocus () 
 	{
 		button.GetComponent<Button>().interactable = false;
-		countdown = 2f;
+		relationship.buttonInactive();
+		countdown = display.jumpTime;
 		options.buttonDisactivate();
+		CareerFocus = true;
 		talk.lastEvent = "Focus";
 		talk.lastEventCount = 2;
 		talk.Speak();
 		display.FastForward();
 	}
+
+	public void buttonActive ()
+	{
+		button.GetComponent<Button>().interactable = true;
+	}
+
+	public void buttonInactive ()
+	{
+		button.GetComponent<Button>().interactable = false;
+	}	
 }

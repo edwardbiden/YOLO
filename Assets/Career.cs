@@ -93,5 +93,6 @@ public class Career : MonoBehaviour {
 		talk.lastEvent = "Focus";
 		talk.lastEventCount = 2;
 		talk.Speak();
+		display.FastForward();
 	}
 }

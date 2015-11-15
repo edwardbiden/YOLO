@@ -44,13 +44,13 @@ public class Display : MonoBehaviour {
 	public Text marriagesOnDeath;
 	public Text childrenOnDeath;
 	public Text partnerAgeText;
-	public Text fastForwardText;
 
 	public Text childrenText;
 	public Text durationText;
 	public int durationMonths;
 	public int durationYears;
 	public int duration;
+	private int fastForwardCount;
 
 	public Text hotnessText;
 	public Text intelligenceText;
@@ -120,7 +120,6 @@ public class Display : MonoBehaviour {
 		monthCount = 2;
 		status = "You are single";
 		fastforward = 1;
-		fastForwardText.text = ">>>";
 		partner = canvas.GetComponent<Partner>();
 		options = canvas.GetComponent<Options>();
 		relationship = relationshipText.GetComponent<Relationship>();
@@ -136,6 +135,7 @@ public class Display : MonoBehaviour {
 		birthYear = 0;
 		durationMonths = 0;
 		durationYears = 0;
+		fastForwardCount = 0;
 	}
 	
 
@@ -383,6 +383,16 @@ public class Display : MonoBehaviour {
 			CanHaveBabies();
 			talk.TextUpdate();
 			talk.Speak();
+
+			if (quickTime == true) {
+				if (fastForwardCount > 0) {
+					fastForwardCount--;
+				}
+				else 
+				{
+					FastForward();
+				}
+			}
 		}
 	}
 
@@ -566,14 +576,13 @@ public class Display : MonoBehaviour {
 		if ( quickTime == false )
 		{
 			quickTime = true;
-			fastforward = 10;
-			fastForwardText.text = ">";
+			fastforward = 5;
+			fastForwardCount = 5;
 		}
 		else
 		{
 			quickTime = false;
 			fastforward = 1;
-			fastForwardText.text = ">>>";
 		}
 	}
 }

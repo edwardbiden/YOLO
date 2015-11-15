@@ -84,6 +84,7 @@ public class Relationship : MonoBehaviour {
 		talk.lastEvent = "Invest";
 		talk.lastEventCount = 2;
 		talk.Speak();
+		display.FastForward();
 	}
 
 	public void UpdateRelationship () {

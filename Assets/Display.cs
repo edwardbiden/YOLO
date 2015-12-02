@@ -78,6 +78,7 @@ public class Display : MonoBehaviour {
 	private Relationship relationship;
 	private Talk talk;
 	private Career career;
+	private Obituary obituary;
 
 	public GameObject canvas;
 	public GameObject relationshipText;
@@ -125,6 +126,7 @@ public class Display : MonoBehaviour {
 		options = canvas.GetComponent<Options>();
 		relationship = relationshipText.GetComponent<Relationship>();
 		talk = canvas.GetComponent<Talk>();
+		obituary = canvas.GetComponent<Obituary>();
 		career = canvas.GetComponent<Career>();
 		colorName = partner.nameText.color;
 		colorName.a = 0;
@@ -557,6 +559,7 @@ public class Display : MonoBehaviour {
 		marriagesOnDeath.text = marriageCount.ToString();
 		childrenOnDeath.text = childrenCount.ToString();
 		deathPanel.SetActive(true);
+		obituary.Write ();
 		BreakUp();
 	}
 
@@ -583,6 +586,7 @@ public class Display : MonoBehaviour {
 			talk.lastEventCount = 0;
 			talk.Speak();
 			career.careerCoolDown = 3f;
+			obituary.Relationship();
 		}
 		else
 		{

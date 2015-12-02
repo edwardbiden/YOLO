@@ -99,8 +99,7 @@ public class Display : MonoBehaviour {
 
 	public int matchChance = 50;
 	public	Color colorName;
-
-	// Use this for initialization
+	
 	public void Start () 
 	{
 		startTime = false;

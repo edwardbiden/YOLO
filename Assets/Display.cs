@@ -41,9 +41,6 @@ public class Display : MonoBehaviour {
 	public Text yearText;
 	public Text statusText;
 	public Text nameText;
-	public Text relationshipOnDeath;
-	public Text marriagesOnDeath;
-	public Text childrenOnDeath;
 	public Text partnerAgeText;
 
 	public Text childrenText;
@@ -68,7 +65,7 @@ public class Display : MonoBehaviour {
 	private string[] aspectRate = {"Poor","Average","Good","Excellent"};
 	public float[] aspectvalue = {0,0,0,0,0};
 	public float[] maxaspectvalue = {0,0,0,0,0};
-	private string[] aspectText = {"","","","",""};
+	public string[] aspectText = {"","","","",""};
 	
 	public string[] careerStates = {"amateur","novice","apprentice","journeyman","professional","expert","guru"};
 	public int[] careerThresholds = {20,40,60,80,100,120};
@@ -555,9 +552,6 @@ public class Display : MonoBehaviour {
 	{
 		status = "You are dead";
 		statusText.text = status;
-		relationshipOnDeath.text = relationshipCount.ToString();
-		marriagesOnDeath.text = marriageCount.ToString();
-		childrenOnDeath.text = childrenCount.ToString();
 		deathPanel.SetActive(true);
 		obituary.Write ();
 		BreakUp();

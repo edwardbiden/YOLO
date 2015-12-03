@@ -474,6 +474,30 @@ public class Display : MonoBehaviour {
 
 	public void BreakUp()
 	{
+		// obituary
+		if ( relationshipCount == 1)
+		{
+			obituary.soNames[0] = partner.partnerName;
+			obituary.soLength[0] = duration;
+			obituary.marriedSO[0] = married;
+			obituary.soChildren[0] = childrenCount - obituary.previousChildren;
+		}
+		if ( relationshipCount >= 2 && obituary.soLength[2] > obituary.soLength[1])
+		{
+			obituary.soNames[1] = obituary.soNames[2];
+			obituary.soLength[1] = obituary.soLength[2];
+			obituary.marriedSO[1] = obituary.marriedSO[2];
+			obituary.soChildren[1] = childrenCount - obituary.previousChildren;
+		}
+		if ( relationshipCount >= 2 )
+		{
+			obituary.soNames[2] = partner.partnerName;
+			obituary.soLength[2] = duration;
+			obituary.marriedSO[2] = married;
+			obituary.soChildren[2] = childrenCount - obituary.previousChildren;
+		}
+
+
 		if (maxHappiness > partner.exHappiness )
 		{
 			partner.CreateEx();
@@ -509,6 +533,29 @@ public class Display : MonoBehaviour {
 
 	public void Dumped()
 	{
+		// obituary
+		if ( relationshipCount == 1)
+		{
+			obituary.soNames[0] = partner.partnerName;
+			obituary.soLength[0] = duration;
+			obituary.marriedSO[0] = married;
+			obituary.soChildren[0] = childrenCount - obituary.previousChildren;
+		}
+		if ( relationshipCount >= 2 && obituary.soLength[2] > obituary.soLength[1])
+		{
+			obituary.soNames[1] = obituary.soNames[2];
+			obituary.soLength[1] = obituary.soLength[2];
+			obituary.marriedSO[1] = obituary.marriedSO[2];
+			obituary.soChildren[1] = childrenCount - obituary.previousChildren;
+		}
+		if ( relationshipCount >= 2 )
+		{
+			obituary.soNames[2] = partner.partnerName;
+			obituary.soLength[2] = duration;
+			obituary.marriedSO[2] = married;
+			obituary.soChildren[2] = childrenCount - obituary.previousChildren;
+		}
+
 		if (partner.exDuration <= duration )
 		{
 			partner.CreateEx();
@@ -550,6 +597,28 @@ public class Display : MonoBehaviour {
 
 	void Death() 
 	{
+		if ( relationshipCount == 1)
+		{
+			obituary.soNames[0] = partner.partnerName;
+			obituary.soLength[0] = duration;
+			obituary.marriedSO[0] = married;
+			obituary.soChildren[0] = childrenCount - obituary.previousChildren;
+		}
+		if ( relationshipCount >= 2 && obituary.soLength[2] > obituary.soLength[1])
+		{
+			obituary.soNames[1] = obituary.soNames[2];
+			obituary.soLength[1] = obituary.soLength[2];
+			obituary.marriedSO[1] = obituary.marriedSO[2];
+			obituary.soChildren[1] = childrenCount - obituary.previousChildren;
+		}
+		if ( relationshipCount >= 2 )
+		{
+			obituary.soNames[2] = partner.partnerName;
+			obituary.soLength[2] = duration;
+			obituary.marriedSO[2] = married;
+			obituary.soChildren[2] = childrenCount - obituary.previousChildren;
+		}
+
 		status = "You are dead";
 		statusText.text = status;
 		deathPanel.SetActive(true);

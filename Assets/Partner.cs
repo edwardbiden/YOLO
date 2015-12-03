@@ -25,8 +25,8 @@ public class Partner : MonoBehaviour {
 	public string[] aspectText = {"","","","",""};
 	private float wealthGap;
 	
-	private string[] femaleNames = {"Alison","Anna","Anne","Amelia","Beth","Beatrix","Claire","Charlotte","Deborah","Eve","Emma","Emily","Faye","Gemma","Holly","Harriet","Juliet","Jess","Jessica","Lucy","Monica","Nancy","Nicole","Olive","Pia","Rose","Rebecca","Stephanie","Sabine","Sarah","Tanja","Violet"};
-	private string[] maleNames = {"Adam","Brian","Charlie","Dave","Ed","Fred","Georg","George","Harry","Jack","Jonathan","John","James","Luke","Liam","Mike","Nigel","Nick","Oliver","Pablo","Patrick","Roger","Simon","Tom","Vincent"};
+	public string[] femaleNames = {"Alison","Anna","Anne","Amelia","Beth","Beatrix","Claire","Charlotte","Deborah","Eve","Emma","Emily","Faye","Gemma","Holly","Harriet","Juliet","Jess","Jessica","Lucy","Monica","Nancy","Nicole","Olive","Pia","Rose","Rebecca","Stephanie","Sabine","Sarah","Tanja","Violet"};
+	public string[] maleNames = {"Adam","Brian","Charlie","Dave","Ed","Fred","Georg","George","Harry","Jack","Jonathan","John","James","Luke","Liam","Mike","Nigel","Nick","Oliver","Pablo","Patrick","Roger","Simon","Tom","Vincent"};
 	public string partnerName;
 	public string exName;
 	public int exDuration;

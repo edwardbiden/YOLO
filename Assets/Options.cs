@@ -8,6 +8,7 @@ public class Options : MonoBehaviour {
 	private Display display;
 	private Career career;
 	private Relationship relationship;
+	private Obituary obituary;
 	public GameObject canvas;
 	public GameObject relationshipText;
 
@@ -20,6 +21,7 @@ public class Options : MonoBehaviour {
 		display = canvas.GetComponent<Display>();
 		career = canvas.GetComponent<Career>();
 		relationship = relationshipText.GetComponent<Relationship>();
+		obituary = canvas.GetComponent<Obituary>();
 		panel.SetActive(false);
 	}
 
@@ -46,7 +48,9 @@ public class Options : MonoBehaviour {
 		display.inARelationship = true;
 		display.durationMonths = 0;
 		display.durationYears = 0;
+		display.duration = 0;
 		relationship.buttonImage.SetActive(true);
+		obituary.previousChildren = display.childrenCount;
 	}
 
 	public void Reject()

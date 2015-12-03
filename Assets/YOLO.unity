@@ -3331,6 +3331,65 @@ MonoBehaviour:
   - 
   - 
   - 
+  femaleNames:
+  - Alison
+  - Anna
+  - Anne
+  - Amelia
+  - Beth
+  - Beatrix
+  - Claire
+  - Charlotte
+  - Deborah
+  - Eve
+  - Emma
+  - Emily
+  - Faye
+  - Gemma
+  - Holly
+  - Harriet
+  - Juliet
+  - Jess
+  - Jessica
+  - Lucy
+  - Monica
+  - Nancy
+  - Nicole
+  - Olive
+  - Pia
+  - Rose
+  - Rebecca
+  - Stephanie
+  - Sabine
+  - Sarah
+  - Tanja
+  - Violet
+  maleNames:
+  - Adam
+  - Brian
+  - Charlie
+  - Dave
+  - Ed
+  - Fred
+  - Georg
+  - George
+  - Harry
+  - Jack
+  - Jonathan
+  - John
+  - James
+  - Luke
+  - Liam
+  - Mike
+  - Nigel
+  - Nick
+  - Oliver
+  - Pablo
+  - Patrick
+  - Roger
+  - Simon
+  - Tom
+  - Vincent
   partnerName: 
   exName: 
   exDuration: 0
@@ -3431,6 +3490,14 @@ MonoBehaviour:
   - 
   - 
   canvas: {fileID: 827084607}
+  soNames:
+  - 
+  - 
+  - 
+  soLength: 000000000000000000000000
+  soChildren: 000000000000000000000000
+  marriedSO: 000000
+  previousChildren: 0
 --- !u!1 &832987241
 GameObject:
   m_ObjectHideFlags: 0
@@ -6975,7 +7042,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1833755977
 RectTransform:
   m_ObjectHideFlags: 0

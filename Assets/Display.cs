@@ -481,6 +481,7 @@ public class Display : MonoBehaviour {
 			obituary.soLength[0] = duration;
 			obituary.marriedSO[0] = married;
 			obituary.soChildren[0] = childrenCount - obituary.previousChildren;
+			Debug.Log( "breakUp1; Name: " + obituary.soNames[0] + ". Length: " + obituary.soLength[0] + ". Married: " + obituary.marriedSO[0] + ". Children: " + obituary.soChildren[0]);
 		}
 		if ( relationshipCount >= 2 && obituary.soLength[2] > obituary.soLength[1])
 		{
@@ -488,6 +489,7 @@ public class Display : MonoBehaviour {
 			obituary.soLength[1] = obituary.soLength[2];
 			obituary.marriedSO[1] = obituary.marriedSO[2];
 			obituary.soChildren[1] = childrenCount - obituary.previousChildren;
+			Debug.Log( "breakUp2; Name: " + obituary.soNames[1] + ". Length: " + obituary.soLength[1] + ". Married: " + obituary.marriedSO[1] + ". Children: " + obituary.soChildren[1]);
 		}
 		if ( relationshipCount >= 2 )
 		{
@@ -495,6 +497,7 @@ public class Display : MonoBehaviour {
 			obituary.soLength[2] = duration;
 			obituary.marriedSO[2] = married;
 			obituary.soChildren[2] = childrenCount - obituary.previousChildren;
+			Debug.Log( "breakUp3; Name: " + obituary.soNames[2] + ". Length: " + obituary.soLength[2] + ". Married: " + obituary.marriedSO[2] + ". Children: " + obituary.soChildren[2]);
 		}
 
 
@@ -540,6 +543,7 @@ public class Display : MonoBehaviour {
 			obituary.soLength[0] = duration;
 			obituary.marriedSO[0] = married;
 			obituary.soChildren[0] = childrenCount - obituary.previousChildren;
+			Debug.Log( "Dumped1; Name: " + obituary.soNames[0] + ". Length: " + obituary.soLength[0] + ". Married: " + obituary.marriedSO[0] + ". Children: " + obituary.soChildren[0]);
 		}
 		if ( relationshipCount >= 2 && obituary.soLength[2] > obituary.soLength[1])
 		{
@@ -547,6 +551,7 @@ public class Display : MonoBehaviour {
 			obituary.soLength[1] = obituary.soLength[2];
 			obituary.marriedSO[1] = obituary.marriedSO[2];
 			obituary.soChildren[1] = childrenCount - obituary.previousChildren;
+			Debug.Log( "Dumped2; Name: " + obituary.soNames[1] + ". Length: " + obituary.soLength[1] + ". Married: " + obituary.marriedSO[1] + ". Children: " + obituary.soChildren[1]);
 		}
 		if ( relationshipCount >= 2 )
 		{
@@ -554,6 +559,7 @@ public class Display : MonoBehaviour {
 			obituary.soLength[2] = duration;
 			obituary.marriedSO[2] = married;
 			obituary.soChildren[2] = childrenCount - obituary.previousChildren;
+			Debug.Log( "Dumped3; Name: " + obituary.soNames[1] + ". Length: " + obituary.soLength[1] + ". Married: " + obituary.marriedSO[1] + ". Children: " + obituary.soChildren[1]);
 		}
 
 		if (partner.exDuration <= duration )
@@ -603,6 +609,7 @@ public class Display : MonoBehaviour {
 			obituary.soLength[0] = duration;
 			obituary.marriedSO[0] = married;
 			obituary.soChildren[0] = childrenCount - obituary.previousChildren;
+			Debug.Log( "Death1; Name: " + obituary.soNames[0] + ". Length: " + obituary.soLength[0] + ". Married: " + obituary.marriedSO[0] + ". Children: " + obituary.soChildren[0]);
 		}
 		if ( relationshipCount >= 2 && obituary.soLength[2] > obituary.soLength[1])
 		{
@@ -610,6 +617,7 @@ public class Display : MonoBehaviour {
 			obituary.soLength[1] = obituary.soLength[2];
 			obituary.marriedSO[1] = obituary.marriedSO[2];
 			obituary.soChildren[1] = childrenCount - obituary.previousChildren;
+			Debug.Log( "Death2; Name: " + obituary.soNames[1] + ". Length: " + obituary.soLength[1] + ". Married: " + obituary.marriedSO[1] + ". Children: " + obituary.soChildren[1]);
 		}
 		if ( relationshipCount >= 2 )
 		{
@@ -617,6 +625,7 @@ public class Display : MonoBehaviour {
 			obituary.soLength[2] = duration;
 			obituary.marriedSO[2] = married;
 			obituary.soChildren[2] = childrenCount - obituary.previousChildren;
+			Debug.Log( "Death3; Name: " + obituary.soNames[2] + ". Length: " + obituary.soLength[2] + ". Married: " + obituary.marriedSO[2] + ". Children: " + obituary.soChildren[2]);
 		}
 
 		status = "You are dead";

@@ -23,7 +23,6 @@ public class Partner : MonoBehaviour {
 	public float[] exvalue = {0,0,0,0,0};
 	public float[] maxaspectvalue = {0,0,0,0,0};
 	public string[] aspectText = {"","","","",""};
-	// public string[] wealthRate = {"$","$$","$$$","$$$$","$$$$$"};
 	private float wealthGap;
 	
 	public string[] femaleNames = {"Alison","Anna","Anne","Amelia","Beth","Beatrix","Claire","Charlotte","Deborah","Eve","Emma","Emily","Faye","Gemma","Holly","Harriet","Juliet","Jess","Jessica","Lucy","Monica","Nancy","Nicole","Olive","Pia","Rose","Rebecca","Stephanie","Sabine","Sarah","Tanja","Violet"};

@@ -55,6 +55,7 @@ public class Display : MonoBehaviour {
 	public Text kindnessText;
 	public Text wealthText;
 	public Text careerText;
+	public Image careerProgress;
 
 	private int monthCount;
 	public int birthMonth;
@@ -70,6 +71,9 @@ public class Display : MonoBehaviour {
 	
 	public string[] careerStates = {"amateur","novice","apprentice","journeyman","professional","expert","guru"};
 	public int[] careerThresholds = {20,40,60,80,100,120};
+	public int careerFillMax;
+	public int careerFillMin;
+	public int careerStep;
 
 	private Partner partner;
 	private Options options;
@@ -212,6 +216,16 @@ public class Display : MonoBehaviour {
 		
 		TextUpdate( aspectvalue, aspectText, aspectRate);
 		TextUpdate( partner.aspectvalue, partner.aspectText, partner.aspectRate);
+
+		// career fill bar
+		careerProgress.fillAmount = (aspectvalue[4] - careerFillMin) / (careerFillMax - careerFillMin);
+		if ( aspectvalue[4] >= careerFillMax  && careerStep < (careerThresholds.Length - 1) )
+		{
+			careerFillMin = careerThresholds[careerStep];
+			careerFillMax = careerThresholds[careerStep + 1];
+			careerStep++;
+			careerProgress.fillAmount = 0;
+		}
 
 		if ( birthPanel )
 		{
@@ -470,6 +484,9 @@ public class Display : MonoBehaviour {
 
 		aspectvalue[3] = Random.Range(1,4);
 		aspectvalue[4] = 0;
+		careerFillMax = careerThresholds[0];
+		careerFillMin = 0;
+		careerStep = 0;
 
 		if ( maleToggle.isOn == true ) {
 			playerIsMale = true;

@@ -23,6 +23,7 @@ public class Partner : MonoBehaviour {
 	public float[] exvalue = {0,0,0,0,0};
 	public float[] maxaspectvalue = {0,0,0,0,0};
 	public string[] aspectText = {"","","","",""};
+	// public string[] wealthRate = {"$","$$","$$$","$$$$","$$$$$"};
 	private float wealthGap;
 	
 	public string[] femaleNames = {"Alison","Anna","Anne","Amelia","Beth","Beatrix","Claire","Charlotte","Deborah","Eve","Emma","Emily","Faye","Gemma","Holly","Harriet","Juliet","Jess","Jessica","Lucy","Monica","Nancy","Nicole","Olive","Pia","Rose","Rebecca","Stephanie","Sabine","Sarah","Tanja","Violet"};
@@ -56,39 +57,61 @@ public class Partner : MonoBehaviour {
 		for (int i = 0; i < 4; i++)
 		{
 			aspectvalue[i] = Random.Range(1, 11);
-			maxaspectvalue[i] = 0;
-			if ( aspectvalue[i] < 4 )
-			{
-				aspectText[i] = aspectRate[0];
-			}
-			if ( aspectvalue[i] < 7 && aspectvalue[i] >= 4 )
-			{
-				aspectText[i] = aspectRate[1];
-			}
-			if ( aspectvalue[i] < 9 && aspectvalue[i] >= 7)
-			{
-				aspectText[i] = aspectRate[2];
-			}
-			if ( aspectvalue[i] >= 9 )
-			{
-				aspectText[i] = aspectRate[3];
-			}
-
-
-
-			partnerMonth = 0;
-			if ( display.playerIsMale == true )
-			{
-				partnerFloat = Random.Range( display.age / 2 + 7, display.age * 1.1f);	
-			}
-			if ( display.playerIsMale == false )
-			{
-				partnerFloat = Random.Range( display.age / 1.1f , (display.age - 7) * 2);	
-			}
-			partnerAge = (int)partnerFloat;
 		}
 		aspectvalue[3] = Random.Range (0, 10 - (partnerAge / 10));
 		aspectvalue[4] = Random.Range (18, partnerAge * 2) - 18;
+		
+//		for (int i = 0; i < 3; i++)
+//		{
+//			maxaspectvalue[i] = 0;
+//			if ( aspectvalue[i] < 4 )
+//			{
+//				aspectText[i] = aspectRate[0];
+//			}
+//			if ( aspectvalue[i] < 7 && aspectvalue[i] >= 4 )
+//			{
+//				aspectText[i] = aspectRate[1];
+//			}
+//			if ( aspectvalue[i] < 9 && aspectvalue[i] >= 7)
+//			{
+//				aspectText[i] = aspectRate[2];
+//			}
+//			if ( aspectvalue[i] >= 9 )
+//			{
+//				aspectText[i] = aspectRate[3];
+//			}
+//		}
+
+//		if ( aspectvalue[3] < 4 )
+//		{
+//			aspectText[3] = wealthRate[0];
+//		}
+//		if ( aspectvalue[3] < 7 && aspectvalue[3] >= 4 )
+//		{
+//			aspectText[3] = wealthRate[1];
+//		}
+//		if ( aspectvalue[3] < 9 && aspectvalue[3] >= 7)
+//		{
+//			aspectText[3] = wealthRate[2];
+//		}
+//		if ( aspectvalue[3] >= 9 )
+//		{
+//			aspectText[3] = wealthRate[3];
+//		}
+
+		partnerMonth = 0;
+		if ( display.playerIsMale == true )
+		{
+			partnerFloat = Random.Range( display.age / 2 + 7, display.age * 1.1f);	
+		}
+		if ( display.playerIsMale == false )
+		{
+			partnerFloat = Random.Range( display.age / 1.1f , (display.age - 7) * 2);	
+		}
+		partnerAge = (int)partnerFloat;
+
+//		aspectvalue[3] = Random.Range (0, 10 - (partnerAge / 10));
+//		aspectvalue[4] = Random.Range (18, partnerAge * 2) - 18;
 
 		partnerChildren = 0;
 		partnerDivorces = 0;

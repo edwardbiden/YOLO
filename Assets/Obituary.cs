@@ -10,13 +10,12 @@ public class Obituary : MonoBehaviour {
 
 	private string[] numbers = {"zero","one","two","three","four","five","six","seven","eight","nine","ten"};
 	private string[] wealthStates = {"destitute","poor","making ends meet","comfortable","well-off","rich"};
-	private int[] wealthThresholds = {20,40,60,80,100,120};
+	private int[] wealthThresholds = {2,4,6,8,10,12};
 
 	private Partner partner;
 	private Display display;
 	public GameObject canvas;
-
-	// partners first; longest; last
+	
 	public string[] soNames = {"","",""};
 	public int[] soLength = {0,0,0};
 	public int[] soChildren = {0,0,0};
@@ -115,36 +114,47 @@ public class Obituary : MonoBehaviour {
 
 		if ( display.relationshipCount > 0 ) 
 		{
+			tombstone.text += "\n\nYour first relationship was with ";
 			significantOther( soNames[0], soLength[0], marriedSO [0], soChildren [0]);
 		}
 		if ( soLength[1] > 0 ) 
 		{
+			tombstone.text += "\n\nYour longest relationship was with ";
 			significantOther( soNames[1], soLength[1], marriedSO [1], soChildren [1]);
 		}
 		if ( soLength[2] > 0 ) 
 		{
+			tombstone.text += "\n\nYour final relationship was with ";
 			significantOther( soNames[2], soLength[2], marriedSO [2], soChildren [2]);
 		}
 		if ( display.relationshipCount == 0 ) 
 		{
 			tombstone.text += ". \n\nYou never hooked up. Ever.";
 		}
+
+		if ( display.inARelationship == true ) 
+		{
+			tombstone.text += "You were still together when you died.";
+		}
+		else
+		{
+			tombstone.text += "\n\nYou died alone.";
+		}
 	}
 
 	public void significantOther ( string name, int length, bool married, int children )
 	{
-		tombstone.text += "\n\n";
-		tombstone.text += "You were ";
+		tombstone.text += name + ". ";
+
 		if ( married == true )
 		{
-			tombstone.text += "married to ";
+			tombstone.text += "You were married for ";
 		}
 		else
 		{
-			tombstone.text += "with ";
+			tombstone.text += "You were together for ";
 		}
-		tombstone.text += name + " for ";
-		
+
 		if ( length > 11 )
 		{
 			tombstone.text += Mathf.Round(length/12).ToString() + " years, ";
@@ -156,15 +166,15 @@ public class Obituary : MonoBehaviour {
 		
 		if ( children == 0 )
 		{
-			tombstone.text += "but you never had children together. ";
+			tombstone.text += "but you never had children. ";
 		}
 		if ( children == 1 )
 		{
-			tombstone.text += "and you had just one child together: " + nameGenerator(tempName);
+			tombstone.text += "and you had just one child: " + nameGenerator(tempName);
 		}
 		if ( children == 2 )
 		{
-			tombstone.text += "and you had two children together: " + nameGenerator(tempName) + " and " + nameGenerator(tempName) + ". ";
+			tombstone.text += "and you had two children: " + nameGenerator(tempName) + " and " + nameGenerator(tempName) + ". ";
 		}
 		if ( children > 2)
 		{
@@ -188,7 +198,7 @@ public class Obituary : MonoBehaviour {
 		else 
 		{
 			nameGen = Random.Range(0, partner.maleNames.Length);
-			return name += partner.maleNames[nameGen];
+			return name = partner.maleNames[nameGen];
 		}
 	}
 }

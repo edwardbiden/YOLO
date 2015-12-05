@@ -66,6 +66,7 @@ public class Display : MonoBehaviour {
 	public float[] aspectvalue = {0,0,0,0,0};
 	public float[] maxaspectvalue = {0,0,0,0,0};
 	public string[] aspectText = {"","","","",""};
+	public string[] wealthRate = {"$","$$","$$$","$$$$","$$$$$"};
 	
 	public string[] careerStates = {"amateur","novice","apprentice","journeyman","professional","expert","guru"};
 	public int[] careerThresholds = {20,40,60,80,100,120};
@@ -244,7 +245,7 @@ public class Display : MonoBehaviour {
 
 	void TextUpdate (float[] values, string[] texts, string[] ratings)
 	{
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < 3; i++)
 		{
 			if ( values[i] < 4 )
 			{
@@ -262,6 +263,27 @@ public class Display : MonoBehaviour {
 			{
 				texts[i] = ratings[3];
 			}	
+		}
+
+		if ( values[3] < 3 )
+		{
+			texts[3] = wealthRate[0];
+		}
+		if ( values[3] < 4 && values[3] >= 3 )
+		{
+			texts[3] = wealthRate[1];
+		}
+		if ( values[3] < 6 && values[3] >= 4 )
+		{
+			texts[3] = wealthRate[2];
+		}
+		if ( values[3] < 8 && values[3] >= 6 )
+		{
+			texts[3] = wealthRate[3];
+		}	
+		if ( values[3] >= 8 )
+		{
+			texts[3] = wealthRate[4];
 		}
 
 		if ( values[4] < careerThresholds[0] )
@@ -458,6 +480,11 @@ public class Display : MonoBehaviour {
 		}
 		birthPanel.SetActive(false);
 		startTime = true;
+		for ( int i = 0; i < 5; i++ )
+		{
+			partner.exvalue[i] = 0;
+		}
+		talk.Start();
 	}
 
 	void Match()

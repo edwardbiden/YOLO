@@ -3255,6 +3255,12 @@ MonoBehaviour:
   - 
   - 
   - 
+  wealthRate:
+  - $
+  - $$
+  - $$$
+  - $$$$
+  - $$$$$
   careerStates:
   - Amateur
   - Novice

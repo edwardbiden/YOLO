@@ -21,7 +21,7 @@ public class Talk : MonoBehaviour {
 	public int[] usedText;
 
 	// Use this for initialization
-	void Start () {
+	public void Start () {
 		display = canvas.GetComponent<Display>();
 		relationship = Comment.GetComponent<Relationship>();
 		partner = canvas.GetComponent<Partner>();
@@ -224,7 +224,7 @@ public class Talk : MonoBehaviour {
 				return;
 			}
 			oneOff = Random.Range(0,100);
-			if ( display.aspectvalue[2] > partner.aspectvalue[2] && usedText[8] == 0 && lastTextCount >= 3 && oneOff < oneOffValue)
+			if ( display.aspectvalue[2] > partner.aspectvalue[2] && usedText[8] == 0 && lastTextCount >= 3 && oneOff < oneOffValue && display.age < 50)
 			{
 				Comment.text = "Your mother doesn't like " + partner.partnerName;
 				usedText[8] = usedTextMax;

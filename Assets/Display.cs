@@ -56,6 +56,7 @@ public class Display : MonoBehaviour {
 	public Text wealthText;
 	public Text careerText;
 	public Image careerProgress;
+	public Image careerProgressPartner;
 
 	private int monthCount;
 	public int birthMonth;
@@ -71,9 +72,12 @@ public class Display : MonoBehaviour {
 	
 	public string[] careerStates = {"amateur","novice","apprentice","journeyman","professional","expert","guru"};
 	public int[] careerThresholds = {20,40,60,80,100,120};
-	public int careerFillMax;
-	public int careerFillMin;
-	public int careerStep;
+	private int careerFillMax;
+	private int careerFillMin;
+	private int careerStep;
+	public int careerFillMaxPartner;
+	public int careerFillMinPartner;
+	public int careerStepPartner;
 
 	private Partner partner;
 	private Options options;
@@ -102,6 +106,10 @@ public class Display : MonoBehaviour {
 
 	public int matchChance = 50;
 	public	Color colorName;
+	public Image PartnerCareer;
+	public Image PartnerFill;
+
+	private Color tempColor;
 	
 	public void Start () 
 	{
@@ -226,6 +234,18 @@ public class Display : MonoBehaviour {
 			careerStep++;
 			careerProgress.fillAmount = 0;
 		}
+		careerProgressPartner.fillAmount = (partner.aspectvalue[4] - careerFillMinPartner) / (careerFillMaxPartner - careerFillMinPartner);
+		if ( partner.aspectvalue[4] >= careerFillMaxPartner  && careerStepPartner < (careerThresholds.Length - 1) )
+		{
+			careerFillMinPartner = careerThresholds[careerStepPartner];
+			careerFillMaxPartner = careerThresholds[careerStepPartner + 1];
+			careerStepPartner++;
+			careerProgressPartner.fillAmount = 0;
+		}
+		PartnerCareer.color = colorName;
+		tempColor = PartnerFill.color;
+		tempColor.a = colorName.a;
+ 		PartnerFill.color = tempColor;
 
 		if ( birthPanel )
 		{

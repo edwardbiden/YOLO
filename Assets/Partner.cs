@@ -25,8 +25,8 @@ public class Partner : MonoBehaviour {
 	public string[] aspectText = {"","","","",""};
 	private float wealthGap;
 	
-	public string[] femaleNames = {"Alison","Anna","Anne","Amelia","Beth","Beatrix","Claire","Charlotte","Deborah","Eve","Emma","Emily","Faye","Gemma","Holly","Harriet","Juliet","Jess","Jessica","Lucy","Monica","Nancy","Nicole","Olive","Pia","Rose","Rebecca","Stephanie","Sabine","Sarah","Tanja","Violet"};
-	public string[] maleNames = {"Adam","Brian","Charlie","Dave","Ed","Fred","Georg","George","Harry","Jack","Jonathan","John","James","Luke","Liam","Mike","Nigel","Nick","Oliver","Pablo","Patrick","Roger","Simon","Tom","Vincent"};
+	public string[] femaleNames = {"Alison","Anna","Anne","Amelia","Beth","Beatrix","Catherine","Claire","Charlotte","Deborah","Eve","Emma","Emily","Faye","Gemma","Holly","Harriet","Juliet","Jess","Jessica","Lucy","Monica","Nancy","Nicole","Olive","Pia","Rose","Rebecca","Stephanie","Sabine","Sarah","Tanja","Violet"};
+	public string[] maleNames = {"Adam","Andy","Andrew","Brian","Charlie","Dave","Ed","Fred","Georg","George","Harry","Jack","Jonathan","John","James","Luke","Liam","Mike","Nigel","Nick","Oliver","Pablo","Patrick","Roger","Simon","Tom","Vincent"};
 	public string partnerName;
 	public string exName;
 	public int exDuration;
@@ -39,6 +39,12 @@ public class Partner : MonoBehaviour {
 	public GameObject canvas;
 	public float exHappiness;
 
+	// invest 0: relationship, 1: do nothing, 2: career
+	private int invest;
+	private float decide;
+	public float[] investRange = {33.5f,66.5f};
+	private int investCount;
+
 	void Start ()
 	{
 		relationship = relationshipText.GetComponent<Relationship>();
@@ -49,55 +55,11 @@ public class Partner : MonoBehaviour {
 		exDuration = 0;
 		wealthGap = 0;
 		exHappiness = 0;
+
 	}
 
 	public void Birth() 
 	{
-		for (int i = 0; i < 4; i++)
-		{
-			aspectvalue[i] = Random.Range(1, 11);
-		}
-		aspectvalue[3] = Random.Range (0, 10 - (partnerAge / 10));
-		aspectvalue[4] = Random.Range (18, partnerAge * 2) - 18;
-		
-//		for (int i = 0; i < 3; i++)
-//		{
-//			maxaspectvalue[i] = 0;
-//			if ( aspectvalue[i] < 4 )
-//			{
-//				aspectText[i] = aspectRate[0];
-//			}
-//			if ( aspectvalue[i] < 7 && aspectvalue[i] >= 4 )
-//			{
-//				aspectText[i] = aspectRate[1];
-//			}
-//			if ( aspectvalue[i] < 9 && aspectvalue[i] >= 7)
-//			{
-//				aspectText[i] = aspectRate[2];
-//			}
-//			if ( aspectvalue[i] >= 9 )
-//			{
-//				aspectText[i] = aspectRate[3];
-//			}
-//		}
-
-//		if ( aspectvalue[3] < 4 )
-//		{
-//			aspectText[3] = wealthRate[0];
-//		}
-//		if ( aspectvalue[3] < 7 && aspectvalue[3] >= 4 )
-//		{
-//			aspectText[3] = wealthRate[1];
-//		}
-//		if ( aspectvalue[3] < 9 && aspectvalue[3] >= 7)
-//		{
-//			aspectText[3] = wealthRate[2];
-//		}
-//		if ( aspectvalue[3] >= 9 )
-//		{
-//			aspectText[3] = wealthRate[3];
-//		}
-
 		partnerMonth = 0;
 		if ( display.playerIsMale == true )
 		{
@@ -109,8 +71,15 @@ public class Partner : MonoBehaviour {
 		}
 		partnerAge = (int)partnerFloat;
 
-//		aspectvalue[3] = Random.Range (0, 10 - (partnerAge / 10));
-//		aspectvalue[4] = Random.Range (18, partnerAge * 2) - 18;
+		for (int i = 0; i < 4; i++)
+		{
+			aspectvalue[i] = Random.Range(1, 11);
+		}
+		aspectvalue[3] = Random.Range (0, 10 - (partnerAge / 10));
+		aspectvalue[4] = Random.Range (18, partnerAge * 2) - 18;
+		display.careerFillMaxPartner = display.careerThresholds[0];
+		display.careerFillMinPartner = 0;
+		display.careerStepPartner = 0;
 
 		partnerChildren = 0;
 		partnerDivorces = 0;
@@ -127,6 +96,7 @@ public class Partner : MonoBehaviour {
 		}
 		nameText.text = partnerName;
 		relationship.relationshipStrength = 50;
+		investCount = 0;
 	}
 
 	public void CreateEx()
@@ -142,6 +112,33 @@ public class Partner : MonoBehaviour {
 
 	public void StatsUpdate( float[] statsArray, float[] statsMaxArray, int statsAge, bool male, int children, int divorces, bool player)
 	{
+		// Decide what to do
+		if ( investCount == 0 )
+		{
+			decide = Random.Range(0,100f);
+			if ( decide <= investRange[0] ) 
+			{
+				investRange[0] += 0.5f;
+				invest = 0;
+			}
+			if ( decide > investRange[0] && decide <= investRange[1] ) 
+			{
+				investRange[0] -= 0.25f;
+				investRange[1] += 0.25f;
+				invest = 1;
+			}
+			if ( decide > investRange[1] ) 
+			{
+				investRange[1] -= 0.25f;
+				invest = 2;
+			}
+			investCount = 3;
+		}
+		else
+		{
+			investCount--;
+		}
+
 		// adjust hotness
 		if ( male == true )
 		{
@@ -175,9 +172,9 @@ public class Partner : MonoBehaviour {
 		}
 
 		// adjust Career
-		if (player == false)
+		if (player == false && invest == 2 )
 		{
-			statsArray[4] += Random.Range(0f,0.5f);
+			statsArray[4] += 0.5f;
 		}
 
 		// adjust wealth

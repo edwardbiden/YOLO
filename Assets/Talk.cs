@@ -23,7 +23,7 @@ public class Talk : MonoBehaviour {
 	// Use this for initialization
 	public void Start () {
 		display = canvas.GetComponent<Display>();
-		relationship = Comment.GetComponent<Relationship>();
+		relationship = canvas.GetComponent<Relationship>();
 		partner = canvas.GetComponent<Partner>();
 		
 		lastEvent = "";

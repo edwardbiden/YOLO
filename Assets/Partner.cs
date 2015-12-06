@@ -35,7 +35,6 @@ public class Partner : MonoBehaviour {
 	private Relationship relationship;
 	private Display display;
 	private Career career;
-	public GameObject relationshipText;
 	public GameObject canvas;
 	public float exHappiness;
 
@@ -47,7 +46,7 @@ public class Partner : MonoBehaviour {
 
 	void Start ()
 	{
-		relationship = relationshipText.GetComponent<Relationship>();
+		relationship = canvas.GetComponent<Relationship>();
 		display = canvas.GetComponent<Display>();
 		partnerName = "";
 		partnerDivorces = 0;

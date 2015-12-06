@@ -18,13 +18,12 @@ public class Smile
 	private Color tempColor;
 
 	public GameObject canvas;
-	public GameObject relationshipText;
 	private Display display;
 	private Relationship relationship;
 
 	void Start () {
 		display = canvas.GetComponent<Display>();
-		relationship = relationshipText.GetComponent<Relationship>();
+		relationship = canvas.GetComponent<Relationship>();
 	}
 	
 	void Update () {

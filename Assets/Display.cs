@@ -87,7 +87,6 @@ public class Display : MonoBehaviour {
 	private Obituary obituary;
 
 	public GameObject canvas;
-	public GameObject relationshipText;
 	public GameObject datingPanel;
 	public GameObject haveBabyButton;
 	public GameObject getMarriedButton;
@@ -134,7 +133,7 @@ public class Display : MonoBehaviour {
 		fastforward = 1;
 		partner = canvas.GetComponent<Partner>();
 		options = canvas.GetComponent<Options>();
-		relationship = relationshipText.GetComponent<Relationship>();
+		relationship = canvas.GetComponent<Relationship>();
 		talk = canvas.GetComponent<Talk>();
 		obituary = canvas.GetComponent<Obituary>();
 		career = canvas.GetComponent<Career>();

@@ -10,7 +10,6 @@ public class Options : MonoBehaviour {
 	private Relationship relationship;
 	private Obituary obituary;
 	public GameObject canvas;
-	public GameObject relationshipText;
 
 	public Transform DateButton;
 	public Transform HaveBaby;
@@ -20,7 +19,7 @@ public class Options : MonoBehaviour {
 	{
 		display = canvas.GetComponent<Display>();
 		career = canvas.GetComponent<Career>();
-		relationship = relationshipText.GetComponent<Relationship>();
+		relationship = canvas.GetComponent<Relationship>();
 		obituary = canvas.GetComponent<Obituary>();
 		panel.SetActive(false);
 	}

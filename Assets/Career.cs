@@ -14,7 +14,6 @@ public class Career : MonoBehaviour {
 	private Options options;
 	private Display display;
 	private Relationship relationship;
-	public GameObject relationshipText;
 	private Talk talk;
 	
 	void Start () 
@@ -25,7 +24,7 @@ public class Career : MonoBehaviour {
 		buttonImage.SetActive(false);
 		options = canvas.GetComponent<Options>();
 		display = canvas.GetComponent<Display>();
-		relationship = relationshipText.GetComponent<Relationship>();
+		relationship = canvas.GetComponent<Relationship>();
 		talk = canvas.GetComponent<Talk>();
 		CareerFocus = false;
 	}

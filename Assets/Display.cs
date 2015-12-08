@@ -63,7 +63,6 @@ public class Display : MonoBehaviour {
 	private int year;
 
 	private string[] months = {"January","Febrary","March","April","May","June","July","August","September","October","November","December"};
-//	private string[] aspectRate = {"Poor","Average","Good","Excellent"};
 	public float[] aspectvalue = {0,0,0,0};
 	public float[] maxaspectvalue = {0,0,0,0};
 	public string[] aspectText = {"","","",""};
@@ -104,8 +103,11 @@ public class Display : MonoBehaviour {
 	public	Color colorName;
 	public Image PartnerCareer;
 	public Image PartnerFill;
+	public Image Deathfade;
+	private bool impendingDeath;
 
 	private Color tempColor;
+	private Color deathColor;
 	
 	public void Start () 
 	{
@@ -150,6 +152,8 @@ public class Display : MonoBehaviour {
 		partner.exDuration = 0;
 		maxHappiness = 50;
 		jumpTime = 5;
+		deathColor = Deathfade.color;
+		impendingDeath = false;
 	}
 	
 
@@ -168,8 +172,12 @@ public class Display : MonoBehaviour {
 		{
 			if ( startTime == true )
 			{
-				Tick();
-				time += Time.deltaTime * fastforward;	
+				if (time > 1f)
+				{
+					Tick();
+					time = 0f;
+				}
+				time += Time.deltaTime * fastforward;
 			}
 		}
 	}
@@ -275,135 +283,141 @@ public class Display : MonoBehaviour {
 	
 	void Tick()
 	{
-	if (time > 1f)
+		if (monthCount < 11)
 		{
-			time = 0f;
-			if (monthCount < 11)
+			monthCount++;	
+		}
+		else
+		{
+			monthCount = 0;
+		}
+
+		if ( inARelationship == false )
+		{
+			colorName.a -= 0.1f;
+		}
+
+		if ( monthCount == birthMonth )
+		{
+			age++;
+		}
+		partner.partnerMonth++;
+		if ( partner.partnerMonth == 12 )
+		{
+			partner.partnerMonth = 0;
+			partner.partnerAge++;
+		}
+
+		talk.lastEventCount++;
+		ageText.text = age.ToString("#");
+		partnerAgeText.text = partner.partnerAge.ToString("#");
+		monthText.text = months[monthCount];
+		year = age + birthYear;
+		yearText.text = year.ToString();
+
+		int r = Random.Range(0,100);
+		if ( partnerAlive == false && r <= matchChance && monthsSinceBirth >= 3 && career.CareerFocus == false )
+		{
+			partnerAlive = true;
+			colorName.a = 1f;
+			Match();
+		}
+
+		if ( partnerAlive == true )
+		{
+			if ( colorName.a <= 0f )
 			{
-				monthCount++;	
+				BreakUp();
 			}
-			else
+		}
+
+		partner.StatsUpdate( aspectvalue, maxaspectvalue, age , playerIsMale, childrenCount, divorceCount, true);
+		if ( inARelationship == true )
+		{
+			relationship.UpdateRelationship();
+			partner.StatsUpdate( partner.aspectvalue, partner.maxaspectvalue, partner.partnerAge, !playerIsMale, partner.partnerChildren, partner.partnerDivorces, false);
+		}
+		if ( inARelationship == false ) 
+		{
+			if ( relationship.playerHappiness > 50 )
 			{
-				monthCount = 0;
+				relationship.playerHappiness -= 0.5f;
+			}
+			if ( relationship.playerHappiness < 50 )
+			{
+				relationship.playerHappiness += 0.5f;
 			}
 
-			if ( inARelationship == false )
-			{
-				colorName.a -= 0.1f;
-			}
+		}
 
-			if ( monthCount == birthMonth )
-			{
-				age++;
-			}
-			partner.partnerMonth++;
-			if ( partner.partnerMonth == 12 )
-			{
-				partner.partnerMonth = 0;
-				partner.partnerAge++;
-			}
+		if ( durationMonths < 11 )
+		{
+			durationMonths++;	
+		}
+		if ( durationMonths >= 11 )
+		{
+			durationMonths = 0;
+			durationYears++;
+		}
+		duration++;
 
-			talk.lastEventCount++;
-			ageText.text = age.ToString("#");
-			partnerAgeText.text = partner.partnerAge.ToString("#");
-			monthText.text = months[monthCount];
-			year = age + birthYear;
-			yearText.text = year.ToString();
-
-			int r = Random.Range(0,100);
-			if ( partnerAlive == false && r <= matchChance && monthsSinceBirth >= 3 && career.CareerFocus == false )
+		if ( pregnant == true ) {
+			pregnancyCount--;
+			if ( pregnancyCount == 0 )
 			{
-				partnerAlive = true;
-				colorName.a = 1f;
-				Match();
+				childrenCount++;
+				career.careerCoolDown = 6f;
+				partner.partnerChildren++;
+				talk.lastEvent = "hadchild";
 			}
-
-			if ( partnerAlive == true )
+			if ( pregnancyCount <= -3 )
 			{
-				if ( colorName.a <= 0f )
-				{
-					BreakUp();
-				}
+				pregnant = false;
+				pregnancyCount = 9;
 			}
+		}
 
-			partner.StatsUpdate( aspectvalue, maxaspectvalue, age , playerIsMale, childrenCount, divorceCount, true);
-			if ( inARelationship == true )
-			{
-				relationship.UpdateRelationship();
-				partner.StatsUpdate( partner.aspectvalue, partner.maxaspectvalue, partner.partnerAge, !playerIsMale, partner.partnerChildren, partner.partnerDivorces, false);
-			}
-			if ( inARelationship == false ) 
-			{
-				if ( relationship.playerHappiness > 50 )
-				{
-					relationship.playerHappiness -= 0.5f;
-				}
-				if ( relationship.playerHappiness < 50 )
-				{
-					relationship.playerHappiness += 0.5f;
-				}
+		if ( relationship.playerHappiness > maxHappiness )
+		{
+			maxHappiness = relationship.playerHappiness;
+		}
 
-			}
+		monthsSinceBirth++;
+		CanHaveBabies();
+		talk.TextUpdate();
+		talk.Speak();
 
-			if ( durationMonths < 11 )
-			{
-				durationMonths++;	
-			}
-			if ( durationMonths >= 11 )
-			{
-				durationMonths = 0;
-				durationYears++;
-			}
-			duration++;
+		if (career.careerCoolDown >=0 )
+		{
+			career.careerCoolDown--;
+		}
+		if (career.CareerFocus == true)
+		{
+			career.Focus();
+		}
+		if (relationship.invest == true)
+		{
+			relationship.Invest();
+		}
 
-			if ( pregnant == true ) {
-				pregnancyCount--;
-				if ( pregnancyCount == 0 )
-				{
-					childrenCount++;
-					career.careerCoolDown = 6f;
-					partner.partnerChildren++;
-					talk.lastEvent = "hadchild";
-				}
-				if ( pregnancyCount <= -3 )
-				{
-					pregnant = false;
-					pregnancyCount = 9;
-				}
+		if (quickTime == true) {
+			if (fastForwardCount > 0) {
+				fastForwardCount--;
 			}
-
-			if ( relationship.playerHappiness > maxHappiness )
+			else 
 			{
-				maxHappiness = relationship.playerHappiness;
+				FastForward();
 			}
+		}
 
-			monthsSinceBirth++;
-			CanHaveBabies();
-			talk.TextUpdate();
-			talk.Speak();
-
-			if (career.careerCoolDown >=0 )
-			{
-				career.careerCoolDown--;
-			}
-			if (career.CareerFocus == true)
-			{
-				career.Focus();
-			}
-			if (relationship.invest == true)
-			{
-				relationship.Invest();
-			}
-
-			if (quickTime == true) {
-				if (fastForwardCount > 0) {
-					fastForwardCount--;
-				}
-				else 
-				{
-					FastForward();
-				}
-			}
+		if ( age + 1 >= deathYear && monthCount >= deathMonth ) 
+		{
+			impendingDeath = true;
+		}
+		if ( impendingDeath == true )
+		{
+			deathColor.a += 0.1f;
+			Deathfade.color = deathColor;
 		}
 	}
 
@@ -633,6 +647,9 @@ public class Display : MonoBehaviour {
 		deathPanel.SetActive(true);
 		obituary.Write ();
 		BreakUp();
+		impendingDeath = false;
+		deathColor.a = 0f;
+		Deathfade.color = deathColor;
 	}
 
 	public void HaveBaby()

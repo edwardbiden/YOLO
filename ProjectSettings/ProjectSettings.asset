@@ -6,7 +6,7 @@ PlayerSettings:
   serializedVersion: 7
   AndroidProfiler: 0
   defaultScreenOrientation: 2
-  targetDevice: 2
+  targetDevice: 0
   targetResolution: 0
   useOnDemandResources: 0
   accelerometerFrequency: 60
@@ -85,7 +85,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleIdentifier: com.EdBiden.YOLO
+  bundleIdentifier: com.edbiden.YOLO
   bundleVersion: 1.0
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
@@ -112,7 +112,7 @@ PlayerSettings:
     serializedVersion: 2
     m_Bits: 238
   iPhoneSdkVersion: 988
-  iPhoneTargetOSVersion: 22
+  iPhoneTargetOSVersion: 28
   uIPrerenderedIcon: 0
   uIRequiresPersistentWiFi: 0
   uIStatusBarHidden: 1
@@ -494,9 +494,9 @@ PlayerSettings:
   WebGL::audioCompressionFormat: 4
   WebGL::exceptionSupport: 1
   WebGL::memorySize: 256
-  iOS::Architecture: 0
+  iOS::Architecture: 1
   iOS::EnableIncrementalBuildSupportForIl2cpp: 0
-  iOS::ScriptingBackend: 0
+  iOS::ScriptingBackend: 1
   boolPropertyNames:
   - WebGL::analyzeBuildSize
   - WebGL::dataCaching

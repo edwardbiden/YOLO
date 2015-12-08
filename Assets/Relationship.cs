@@ -30,9 +30,13 @@ public class Relationship : MonoBehaviour {
 	public float deltaDenominator;
 	public int relationshipMin;
 	public int relationshipMax;
-	public int loveBonus;
-	public int contentmentBonus;
+	public float loveBonus;
+	public float contentmentBonus;
 	public bool invest;
+	private float playerChemistry;
+	public float partnerChemistry;
+	public float chemistryMin;
+	public float chemistryMax;
 
 	public int babyThreshold;
 	public int marriageThreshold;
@@ -91,11 +95,13 @@ public class Relationship : MonoBehaviour {
 
 	public void UpdateRelationship () {
 		// calculate playerHappiness
-		playerHappiness = Mood(display.aspectvalue, partner.aspectvalue, playerHappiness);
+		playerHappiness = Mood(display.aspectvalue, partner.aspectvalue, playerHappiness, playerChemistry);
 		playerRating = Rating(playerHappiness, playerRating);
+		Debug.Log ("player: " + playerHappiness);
 
-		partnerHappiness = Mood(partner.aspectvalue, display.aspectvalue, partnerHappiness);
+		partnerHappiness = Mood(partner.aspectvalue, display.aspectvalue, partnerHappiness, partnerChemistry);
 		partnerRating = Rating(partnerHappiness, partnerRating);
+		Debug.Log ("partner: " + partnerHappiness);
 
 		if ( playerHappiness >= babyThreshold && partnerHappiness >= babyThreshold && display.pregnant == false && display.canHaveBabies == true)
 		{
@@ -108,27 +114,41 @@ public class Relationship : MonoBehaviour {
 		}
 	}
 
-	public float Mood( float[] myvalues, float[] yourvalues, float myHappiness) 
+	public float Mood( float[] myvalues, float[] yourvalues, float myHappiness, float myChemistry) 
 	{
 		delta = 0;
-		for ( int a = 0; a < 4; a++ )
+		for ( int a = 0; a < 3; a++ )
 		{
 			delta += myvalues[a] - yourvalues[a];	
 		}
 		// balance is way off
-		myHappiness += Random.Range(relationshipMin - (delta / deltaDenominator), relationshipMax - (delta / deltaDenominator));
+		Debug.Log ("myHappiness: " + myHappiness);
+		myHappiness -= (delta / deltaDenominator);
+		Debug.Log ("delta / denom: " + (-delta / deltaDenominator));
 
 		// novelty effect
 		if ( display.durationYears < 1 && display.durationMonths <=3 )
 		{
 			myHappiness += loveBonus;
+			Debug.Log ("lovebonus: " + loveBonus);
 		}
 		if ( display.durationYears < 2 )
 		{
 			myHappiness += contentmentBonus;
+			Debug.Log ("contentmentbonus: " + contentmentBonus);
 		}
 
-		if ( invest == true )
+		// Chemistry - random modifier
+		float chemChange = Random.Range (0,10f);
+		if ( chemChange < 2 )
+		{
+			myChemistry = Random.Range( chemistryMin, chemistryMax );
+		}
+		myHappiness += myChemistry;
+		Debug.Log ("myChemistry: " + myChemistry);
+		Debug.Log ("myHappiness: " + myHappiness);
+
+		if ( invest == true || partner.invest == 0)
 		{
 			myHappiness += 1;
 		}

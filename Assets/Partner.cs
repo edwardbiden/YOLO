@@ -5,8 +5,7 @@ using UnityEngine.UI;
 public class Partner : MonoBehaviour {
 
 	public Text hotnessText;
-	public Text intelligenceText;
-	public Text kindnessText;
+	public Text personalityText;
 	public Text wealthText;
 	public Text careerText;
 	public Text nameText;
@@ -18,11 +17,11 @@ public class Partner : MonoBehaviour {
 	public int partnerChildren;
 	public int partnerDivorces;
 
-	public string[] aspectRate = {"Poor","Average","Good","Excellent"};
-	public float[] aspectvalue = {0,0,0,0,0};
-	public float[] exvalue = {0,0,0,0,0};
-	public float[] maxaspectvalue = {0,0,0,0,0};
-	public string[] aspectText = {"","","","",""};
+//	public string[] aspectRate = {"Poor","Average","Good","Excellent"};
+	public float[] aspectvalue = {0,0,0,0};
+	public float[] exvalue = {0,0,0,0};
+	public float[] maxaspectvalue = {0,0,0,0};
+	public string[] aspectText = {"","","",""};
 	private float wealthGap;
 	
 	public string[] femaleNames = {"Alison","Anna","Anne","Amelia","Beth","Beatrix","Catherine","Claire","Charlotte","Deborah","Eve","Emma","Emily","Faye","Gemma","Holly","Harriet","Juliet","Jess","Jessica","Lucy","Monica","Nancy","Nicole","Olive","Pia","Rose","Rebecca","Stephanie","Sabine","Sarah","Tanja","Violet"};
@@ -35,11 +34,12 @@ public class Partner : MonoBehaviour {
 	private Relationship relationship;
 	private Display display;
 	private Career career;
+	private TextUpdate textupdate;
 	public GameObject canvas;
 	public float exHappiness;
 
 	// invest 0: relationship, 1: do nothing, 2: career
-	private int invest;
+	public int invest;
 	private float decide;
 	public float[] investRange = {33.5f,66.5f};
 	private int investCount;
@@ -48,6 +48,7 @@ public class Partner : MonoBehaviour {
 	{
 		relationship = canvas.GetComponent<Relationship>();
 		display = canvas.GetComponent<Display>();
+		textupdate = canvas.GetComponent<TextUpdate>();
 		partnerName = "";
 		partnerDivorces = 0;
 		partnerChildren = 0;
@@ -70,18 +71,21 @@ public class Partner : MonoBehaviour {
 		}
 		partnerAge = (int)partnerFloat;
 
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < 2; i++)
 		{
 			aspectvalue[i] = Random.Range(1, 11);
 		}
-		aspectvalue[3] = Random.Range (0, 10 - (partnerAge / 10));
-		aspectvalue[4] = Random.Range (18, partnerAge * 2) - 18;
-		display.careerFillMaxPartner = display.careerThresholds[0];
+		aspectvalue[2] = Random.Range (0, 10 - (partnerAge / 10));
+		aspectvalue[3] = Random.Range (18, partnerAge * 2) - 18;
+		display.careerFillMaxPartner = textupdate.careerThresholds[0];
 		display.careerFillMinPartner = 0;
 		display.careerStepPartner = 0;
 
 		partnerChildren = 0;
 		partnerDivorces = 0;
+		investRange[0] = 33.5f;
+		investRange[1] = 66.5f;
+		relationship.partnerChemistry = Random.Range (relationship.chemistryMin,relationship.chemistryMin);
 		
 		if ( display.playerIsMale == true )
 		{
@@ -103,7 +107,7 @@ public class Partner : MonoBehaviour {
 		exName = partnerName;
 		exDuration = display.duration;
 		exHappiness = display.maxHappiness;
-		for (int i =0; i <4; i++)
+		for (int i =0; i <3; i++)
 		{
 			exvalue[i] = aspectvalue[i];
 		}
@@ -117,19 +121,22 @@ public class Partner : MonoBehaviour {
 			decide = Random.Range(0,100f);
 			if ( decide <= investRange[0] ) 
 			{
-				investRange[0] += 0.5f;
+				investRange[0] += 1.0f;
 				invest = 0;
+				Debug.Log ("focus on relationship " + investRange[0]);
 			}
 			if ( decide > investRange[0] && decide <= investRange[1] ) 
 			{
-				investRange[0] -= 0.25f;
-				investRange[1] += 0.25f;
+				investRange[0] -= 0.5f;
+				investRange[1] += 0.5f;
 				invest = 1;
+				Debug.Log ("do nothing " + investRange[0] + " : " + investRange[1]);
 			}
 			if ( decide > investRange[1] ) 
 			{
-				investRange[1] -= 0.25f;
+				investRange[1] -= 0.1f;
 				invest = 2;
+				Debug.Log ("focus on career " + investRange[1]);
 			}
 			investCount = 3;
 		}
@@ -173,33 +180,33 @@ public class Partner : MonoBehaviour {
 		// adjust Career
 		if (player == false && invest == 2 )
 		{
-			statsArray[4] += 0.5f;
+			statsArray[3] += 0.5f;
 		}
 
 		// adjust wealth
-		wealthGap = (statsArray[4] / 15) - statsArray[3];
+		wealthGap = (statsArray[3] / 15) - statsArray[2];
 
 		if (wealthGap < 3)
 		{
-			statsArray[3] += Random.Range(0f,0.1f);
+			statsArray[2] += Random.Range(0f,0.1f);
 		}
 		if (wealthGap > 0 && wealthGap <= 3)
 		{
-			statsArray[3] += Random.Range(0f,0.05f);
+			statsArray[2] += Random.Range(0f,0.05f);
 		}
 		if (wealthGap > -3 && wealthGap <= 0)
 		{
-			statsArray[3] += Random.Range(-0.05f,0f);
+			statsArray[2] += Random.Range(-0.05f,0f);
 		}
 		if (wealthGap <= -3 )
 		{
-			statsArray[3] += Random.Range(-0.1f,0f);
+			statsArray[2] += Random.Range(-0.1f,0f);
 		}
 
-		statsArray[3] -= children * 0.02f;
-		statsArray[3] -= divorces * 0.02f;
+		statsArray[2] -= children * 0.02f;
+		statsArray[2] -= divorces * 0.02f;
 
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < 3; i++)
 		{
 			if ( statsArray[i] >= statsMaxArray[i] )
 			{

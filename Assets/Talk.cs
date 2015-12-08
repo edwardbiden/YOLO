@@ -208,7 +208,7 @@ public class Talk : MonoBehaviour {
 			}
 
 			oneOff = Random.Range(0,100);
-			if ( display.aspectvalue[2] > partner.aspectvalue[2] && usedText[6] == 0 && lastTextCount >= 3 && oneOff < oneOffValue)
+			if ( display.aspectvalue[1] > partner.aspectvalue[1] && usedText[6] == 0 && lastTextCount >= 3 && oneOff < oneOffValue)
 			{
 				Comment.text = partner.partnerName + " said something mean to you";
 				usedText[6] = usedTextMax;
@@ -216,7 +216,7 @@ public class Talk : MonoBehaviour {
 				return;
 			}
 			oneOff = Random.Range(0,100);
-			if ( display.aspectvalue[2] > partner.aspectvalue[2] && usedText[7] == 0 && lastTextCount >= 3 && oneOff < oneOffValue)
+			if ( display.aspectvalue[1] > partner.aspectvalue[1] && usedText[7] == 0 && lastTextCount >= 3 && oneOff < oneOffValue)
 			{
 				Comment.text = "Maybe you should be with someone nicer than " + partner.partnerName;
 				usedText[7] = usedTextMax;
@@ -224,7 +224,7 @@ public class Talk : MonoBehaviour {
 				return;
 			}
 			oneOff = Random.Range(0,100);
-			if ( display.aspectvalue[2] > partner.aspectvalue[2] && usedText[8] == 0 && lastTextCount >= 3 && oneOff < oneOffValue && display.age < 50)
+			if ( display.aspectvalue[1] > partner.aspectvalue[1] && usedText[8] == 0 && lastTextCount >= 3 && oneOff < oneOffValue && display.age < 50)
 			{
 				Comment.text = "Your mother doesn't like " + partner.partnerName;
 				usedText[8] = usedTextMax;
@@ -232,7 +232,7 @@ public class Talk : MonoBehaviour {
 				return;
 			}
 			oneOff = Random.Range(0,100);
-			if ( display.aspectvalue[2] > partner.aspectvalue[2] && usedText[9] == 0 && lastTextCount >= 3 && oneOff < oneOffValue)
+			if ( display.aspectvalue[1] > partner.aspectvalue[1] && usedText[9] == 0 && lastTextCount >= 3 && oneOff < oneOffValue)
 			{
 				Comment.text = partner.partnerName + " never seems to listen";
 				usedText[9] = usedTextMax;
@@ -266,14 +266,14 @@ public class Talk : MonoBehaviour {
 				return;
 			}
 			oneOff = Random.Range(0,100);
-			if ( partner.aspectvalue[2] < partner.exvalue[2] && usedText[15] == 0 && lastTextCount >= 3 && oneOff < oneOffValue)
+			if ( partner.aspectvalue[1] < partner.exvalue[1] && usedText[15] == 0 && lastTextCount >= 3 && oneOff < oneOffValue)
 			{
 				Comment.text = partner.partnerName + " isn't as kind as " + partner.exName;
 				usedText[15] = usedTextMax;
 				lastTextCount = 0;
 				return;
 			}
-			if ( partner.aspectvalue[3] < partner.exvalue[3] && usedText[16] == 0 && lastTextCount >= 3 && oneOff < oneOffValue)
+			if ( partner.aspectvalue[2] < partner.exvalue[2] && usedText[16] == 0 && lastTextCount >= 3 && oneOff < oneOffValue)
 			{
 				Comment.text = partner.partnerName + " isn't as well off as " + partner.exName;
 				usedText[16] = usedTextMax;
@@ -295,6 +295,12 @@ public class Talk : MonoBehaviour {
 		}
 
 		// general status
+		oneOff = Random.Range(0,100);
+		if ( display.durationMonths >= 3 && display.colorName.a <= 0.7f && lastTextCount >= 3 && display.age <= 25 && oneOff < 50)
+		{
+			Comment.text = "You are horny.";
+			return;
+		}
 		if ( display.durationMonths >= 3 && display.colorName.a <= 0.7f && lastTextCount >= 3)
 		{
 			Comment.text = "You are lonely.";

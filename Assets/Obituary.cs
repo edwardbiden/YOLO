@@ -75,37 +75,41 @@ public class Obituary : MonoBehaviour {
 		}
 
 		// career
-		if (display.aspectText[4].StartsWith("A"))
+		if (display.aspectText[3].StartsWith("a"))
 		{
-			tombstone.text += "You were an " + display.aspectText[4].ToLower() + " in your field and died ";
+			tombstone.text += "You were an " + display.aspectText[3].ToLower() + " in your field and died ";
+		}
+		else if (display.aspectText[3].StartsWith("c"))
+		{
+			tombstone.text += "You were " + display.aspectText[3].ToLower() + " in your field and died ";
 		}
 		else
 		{
-			tombstone.text += "You were a " + display.aspectText[4].ToLower() + " in your field and died ";
+			tombstone.text += "You were a " + display.aspectText[3].ToLower() + " in your field and died ";
 		}
 
 		// wealth
-		if ( display.aspectvalue[3] < wealthThresholds[0] )
+		if ( display.aspectvalue[2] < wealthThresholds[0] )
 		{
 			tombstone.text += wealthStates[0];
 		}
-		if ( display.aspectvalue[3] < wealthThresholds[1] && display.aspectvalue[3] >= wealthThresholds[0])
+		if ( display.aspectvalue[2] < wealthThresholds[1] && display.aspectvalue[2] >= wealthThresholds[0])
 		{
 			tombstone.text += wealthStates[1];
 		}
-		if ( display.aspectvalue[3] < wealthThresholds[2] && display.aspectvalue[3] >= wealthThresholds[1])
+		if ( display.aspectvalue[2] < wealthThresholds[2] && display.aspectvalue[2] >= wealthThresholds[1])
 		{
 			tombstone.text += wealthStates[2];
 		}
-		if ( display.aspectvalue[3] < wealthThresholds[3] && display.aspectvalue[3] >= wealthThresholds[2])
+		if ( display.aspectvalue[2] < wealthThresholds[3] && display.aspectvalue[2] >= wealthThresholds[2])
 		{
 			tombstone.text += wealthStates[3];
 		}
-		if ( display.aspectvalue[3] < wealthThresholds[4] && display.aspectvalue[3] >= wealthThresholds[3])
+		if ( display.aspectvalue[2] < wealthThresholds[4] && display.aspectvalue[2] >= wealthThresholds[3])
 		{
 			tombstone.text += wealthStates[4];
 		}
-		if ( display.aspectvalue[3] >= wealthThresholds[4])
+		if ( display.aspectvalue[2] >= wealthThresholds[4])
 		{
 			tombstone.text += wealthStates[5];
 		}

@@ -51,8 +51,7 @@ public class Display : MonoBehaviour {
 	private int fastForwardCount;
 
 	public Text hotnessText;
-	public Text intelligenceText;
-	public Text kindnessText;
+	public Text personalityText;
 	public Text wealthText;
 	public Text careerText;
 	public Image careerProgress;
@@ -64,14 +63,11 @@ public class Display : MonoBehaviour {
 	private int year;
 
 	private string[] months = {"January","Febrary","March","April","May","June","July","August","September","October","November","December"};
-	private string[] aspectRate = {"Poor","Average","Good","Excellent"};
-	public float[] aspectvalue = {0,0,0,0,0};
-	public float[] maxaspectvalue = {0,0,0,0,0};
-	public string[] aspectText = {"","","","",""};
-	public string[] wealthRate = {"$","$$","$$$","$$$$","$$$$$"};
-	
-	public string[] careerStates = {"amateur","novice","apprentice","journeyman","professional","expert","guru"};
-	public int[] careerThresholds = {20,40,60,80,100,120};
+//	private string[] aspectRate = {"Poor","Average","Good","Excellent"};
+	public float[] aspectvalue = {0,0,0,0};
+	public float[] maxaspectvalue = {0,0,0,0};
+	public string[] aspectText = {"","","",""};
+
 	private int careerFillMax;
 	private int careerFillMin;
 	private int careerStep;
@@ -85,6 +81,7 @@ public class Display : MonoBehaviour {
 	private Talk talk;
 	private Career career;
 	private Obituary obituary;
+	private TextUpdate textupdate;
 
 	public GameObject canvas;
 	public GameObject datingPanel;
@@ -134,6 +131,7 @@ public class Display : MonoBehaviour {
 		partner = canvas.GetComponent<Partner>();
 		options = canvas.GetComponent<Options>();
 		relationship = canvas.GetComponent<Relationship>();
+		textupdate = canvas.GetComponent<TextUpdate>();
 		talk = canvas.GetComponent<Talk>();
 		obituary = canvas.GetComponent<Obituary>();
 		career = canvas.GetComponent<Career>();
@@ -184,8 +182,7 @@ public class Display : MonoBehaviour {
 		}
 		partner.nameText.color = colorName;
 		partner.hotnessText.color = colorName;
-		partner.intelligenceText.color = colorName;
-		partner.kindnessText.color = colorName;
+		partner.personalityText.color = colorName;
 		partner.wealthText.color = colorName;
 		partnerAgeText.color = colorName;
 		partner.careerText.color = colorName;
@@ -221,23 +218,23 @@ public class Display : MonoBehaviour {
 			}	
 		}
 		
-		TextUpdate( aspectvalue, aspectText, aspectRate);
-		TextUpdate( partner.aspectvalue, partner.aspectText, partner.aspectRate);
+		textupdate.Process( aspectvalue, aspectText);
+		textupdate.Process( partner.aspectvalue, partner.aspectText);
 
 		// career fill bar
-		careerProgress.fillAmount = (aspectvalue[4] - careerFillMin) / (careerFillMax - careerFillMin);
-		if ( aspectvalue[4] >= careerFillMax  && careerStep < (careerThresholds.Length - 1) )
+		careerProgress.fillAmount = (aspectvalue[3] - careerFillMin) / (careerFillMax - careerFillMin);
+		if ( aspectvalue[3] >= careerFillMax  && careerStep < (textupdate.careerThresholds.Length - 1) )
 		{
-			careerFillMin = careerThresholds[careerStep];
-			careerFillMax = careerThresholds[careerStep + 1];
+			careerFillMin = textupdate.careerThresholds[careerStep];
+			careerFillMax = textupdate.careerThresholds[careerStep + 1];
 			careerStep++;
 			careerProgress.fillAmount = 0;
 		}
-		careerProgressPartner.fillAmount = (partner.aspectvalue[4] - careerFillMinPartner) / (careerFillMaxPartner - careerFillMinPartner);
-		if ( partner.aspectvalue[4] >= careerFillMaxPartner  && careerStepPartner < (careerThresholds.Length - 1) )
+		careerProgressPartner.fillAmount = (partner.aspectvalue[3] - careerFillMinPartner) / (careerFillMaxPartner - careerFillMinPartner);
+		if ( partner.aspectvalue[3] >= careerFillMaxPartner  && careerStepPartner < (textupdate.careerThresholds.Length - 1) )
 		{
-			careerFillMinPartner = careerThresholds[careerStepPartner];
-			careerFillMaxPartner = careerThresholds[careerStepPartner + 1];
+			careerFillMinPartner = textupdate.careerThresholds[careerStepPartner];
+			careerFillMaxPartner = textupdate.careerThresholds[careerStepPartner + 1];
 			careerStepPartner++;
 			careerProgressPartner.fillAmount = 0;
 		}
@@ -258,97 +255,23 @@ public class Display : MonoBehaviour {
 					startButton.interactable = true;
 				}
 			}
-			else {
+			else 
+			{
 				startButton.interactable = false;
 			}
 		}
 
 		// update texts last
 		hotnessText.text = aspectText[0];
-		intelligenceText.text = aspectText[1];
-		kindnessText.text = aspectText[2];
-		wealthText.text = aspectText[3];
-		careerText.text = aspectText[4];
+		personalityText.text = aspectText[1];
+		wealthText.text = aspectText[2];
+		careerText.text = aspectText[3];
 		partner.hotnessText.text = partner.aspectText[0];
-		partner.intelligenceText.text = partner.aspectText[1];
-		partner.kindnessText.text = partner.aspectText[2];
-		partner.wealthText.text = partner.aspectText[3];
-		partner.careerText.text = partner.aspectText[4];
+		partner.personalityText.text = partner.aspectText[1];
+		partner.wealthText.text = partner.aspectText[2];
+		partner.careerText.text = partner.aspectText[3];
 	}
 
-	void TextUpdate (float[] values, string[] texts, string[] ratings)
-	{
-		for (int i = 0; i < 3; i++)
-		{
-			if ( values[i] < 4 )
-			{
-				texts[i] = ratings[0];
-			}
-			if ( values[i] < 7 && values[i] >= 4 )
-			{
-				texts[i] = ratings[1];
-			}
-			if ( values[i] < 9 && values[i] >= 7)
-			{
-				texts[i] = ratings[2];
-			}
-			if ( values[i] >= 9 )
-			{
-				texts[i] = ratings[3];
-			}	
-		}
-
-		if ( values[3] < 3 )
-		{
-			texts[3] = wealthRate[0];
-		}
-		if ( values[3] < 4 && values[3] >= 3 )
-		{
-			texts[3] = wealthRate[1];
-		}
-		if ( values[3] < 6 && values[3] >= 4 )
-		{
-			texts[3] = wealthRate[2];
-		}
-		if ( values[3] < 8 && values[3] >= 6 )
-		{
-			texts[3] = wealthRate[3];
-		}	
-		if ( values[3] >= 8 )
-		{
-			texts[3] = wealthRate[4];
-		}
-
-		if ( values[4] < careerThresholds[0] )
-		{
-			texts[4] = careerStates[0];
-		}
-		if ( values[4] < careerThresholds[1] && values[4] >= careerThresholds[0] )
-		{
-			texts[4] = careerStates[1];
-		}
-		if ( values[4] < careerThresholds[2] && values[4] >= careerThresholds[1] )
-		{
-			texts[4] = careerStates[2];
-		}
-		if ( values[4] < careerThresholds[3] && values[4] >= careerThresholds[2] )
-		{
-			texts[4] = careerStates[3];
-		}	
-		if ( values[4] < careerThresholds[4] && values[4] >= careerThresholds[3] )
-		{
-			texts[4] = careerStates[4];
-		}
-		if ( values[4] < careerThresholds[5] && values[4] >= careerThresholds[4] )
-		{
-			texts[4] = careerStates[5];
-		}
-		if ( values[4] >= careerThresholds[5] )
-		{
-			texts[4] = careerStates[6];
-		}
-	}
-	
 	
 	void Tick()
 	{
@@ -386,10 +309,7 @@ public class Display : MonoBehaviour {
 			monthText.text = months[monthCount];
 			year = age + birthYear;
 			yearText.text = year.ToString();
-			
-			partner.StatsUpdate( aspectvalue, maxaspectvalue, age , playerIsMale, childrenCount, divorceCount, true);
-			partner.StatsUpdate( partner.aspectvalue, partner.maxaspectvalue, partner.partnerAge, !playerIsMale, partner.partnerChildren, partner.partnerDivorces, false);
-			
+
 			int r = Random.Range(0,100);
 			if ( partnerAlive == false && r <= matchChance && monthsSinceBirth >= 3 && career.CareerFocus == false )
 			{
@@ -406,9 +326,23 @@ public class Display : MonoBehaviour {
 				}
 			}
 
+			partner.StatsUpdate( aspectvalue, maxaspectvalue, age , playerIsMale, childrenCount, divorceCount, true);
 			if ( inARelationship == true )
 			{
-				relationship.UpdateRelationship();	
+				relationship.UpdateRelationship();
+				partner.StatsUpdate( partner.aspectvalue, partner.maxaspectvalue, partner.partnerAge, !playerIsMale, partner.partnerChildren, partner.partnerDivorces, false);
+			}
+			if ( inARelationship == false ) 
+			{
+				if ( relationship.playerHappiness > 50 )
+				{
+					relationship.playerHappiness -= 0.5f;
+				}
+				if ( relationship.playerHappiness < 50 )
+				{
+					relationship.playerHappiness += 0.5f;
+				}
+
 			}
 
 			if ( durationMonths < 11 )
@@ -495,15 +429,15 @@ public class Display : MonoBehaviour {
 
 	public void Birth() 
 	{
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < 4; i++)
 		{
 			aspectvalue[i] = Random.Range(1, 11);
 			maxaspectvalue[i] = 0;
 		}
 
-		aspectvalue[3] = Random.Range(1,4);
-		aspectvalue[4] = 0;
-		careerFillMax = careerThresholds[0];
+		aspectvalue[2] = Random.Range(1,4);
+		aspectvalue[3] = 0;
+		careerFillMax = textupdate.careerThresholds[0];
 		careerFillMin = 0;
 		careerStep = 0;
 
@@ -516,7 +450,7 @@ public class Display : MonoBehaviour {
 		}
 		birthPanel.SetActive(false);
 		startTime = true;
-		for ( int i = 0; i < 5; i++ )
+		for ( int i = 0; i < 4; i++ )
 		{
 			partner.exvalue[i] = 0;
 		}
@@ -527,8 +461,7 @@ public class Display : MonoBehaviour {
 	{
 		partner.Birth();
 		options.On();
-		relationship.playerHappiness = 50;
-		relationship.partnerHappiness = 50;
+		relationship.partnerHappiness = Random.Range(35f,65f);
 		talk.lastEvent = "matched";
 		talk.lastEventCount = 0;
 		talk.ResetTalk();
@@ -568,6 +501,8 @@ public class Display : MonoBehaviour {
 		{
 			partner.CreateEx();
 		}
+		float moodswing = (relationship.playerHappiness - 50) / 2;
+		relationship.playerHappiness = moodswing + 50;
 		partnerAlive = false;
 		options.Off();
 		datingPanel.SetActive(false);
@@ -633,6 +568,8 @@ public class Display : MonoBehaviour {
 		options.Off();
 		datingPanel.SetActive(false);
 		status = "You are single";
+		float moodswing = 100 - relationship.playerHappiness;
+		relationship.playerHappiness = Mathf.Max (Mathf.Min (moodswing, 80f), 10f);
 		durationMonths = 0;
 		durationYears = 0;
 		duration = 0;
@@ -725,7 +662,11 @@ public class Display : MonoBehaviour {
 		}
 		else
 		{
-			relationship.playerHappiness -= 10;
+			relationship.playerHappiness -= 40;
+			if (relationship.playerHappiness <= 10)
+			{
+				relationship.playerHappiness = 10;
+			}
 			relationship.partnerHappiness -= 10;
 			getMarriedButton.SetActive(false);
 			talk.lastEvent = "spurned";

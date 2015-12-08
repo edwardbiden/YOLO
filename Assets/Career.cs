@@ -58,7 +58,7 @@ public class Career : MonoBehaviour {
 	{
 		if (countdown >= 0)
 		{
-			display.aspectvalue[4] += 0.5f;
+			display.aspectvalue[3] += 0.5f;
 			button.GetComponent<Button>().interactable = false;
 			relationship.buttonInactive();
 			countdown--;

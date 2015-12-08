@@ -648,7 +648,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: .423529416, g: .721568644, b: .423529416, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -698,7 +698,7 @@ RectTransform:
   m_Children:
   - {fileID: 478020536}
   m_Father: {fileID: 1065339913}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_AnchorMin: {x: .150000006, y: .119999997}
   m_AnchorMax: {x: .850000024, y: .159999996}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -803,7 +803,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1064003989}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_AnchorMin: {x: .100000001, y: 0}
   m_AnchorMax: {x: .5, y: .119999997}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -956,7 +956,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1700750865}
+      - m_Target: {fileID: 827084620}
         m_MethodName: StartInvest
         m_Mode: 1
         m_Arguments:
@@ -1102,7 +1102,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1064003989}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_AnchorMin: {x: .100000001, y: .159999996}
   m_AnchorMax: {x: .899999976, y: .25999999}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -1139,7 +1139,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Apprentice
+  m_Text: apprentice
 --- !u!222 &237995306
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1174,7 +1174,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1065339913}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_AnchorMin: {x: .100000001, y: 0}
   m_AnchorMax: {x: .5, y: .119999997}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -1246,7 +1246,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1065339913}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_AnchorMin: {x: .100000001, y: .159999996}
   m_AnchorMax: {x: .899999976, y: .25999999}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -1283,7 +1283,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Apprentice
+  m_Text: apprentice
 --- !u!222 &290475533
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2426,8 +2426,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1065339913}
   m_RootOrder: 2
-  m_AnchorMin: {x: .100000001, y: .479999989}
-  m_AnchorMax: {x: .899999976, y: .579999983}
+  m_AnchorMin: {x: .100000001, y: .379999995}
+  m_AnchorMax: {x: .899999976, y: .479999989}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -2462,7 +2462,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Excellent
+  m_Text: attractive
 --- !u!222 &648454534
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2641,8 +2641,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1064003989}
   m_RootOrder: 2
-  m_AnchorMin: {x: .100000001, y: .479999989}
-  m_AnchorMax: {x: .899999976, y: .579999983}
+  m_AnchorMin: {x: .100000001, y: .379999995}
+  m_AnchorMax: {x: .899999976, y: .479999989}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -2677,7 +2677,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Excellent
+  m_Text: attractive
 --- !u!222 &689780588
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2937,7 +2937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: .423875421, g: .720588207, b: .423529416, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3056,7 +3056,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1065339913}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_AnchorMin: {x: .5, y: 0}
   m_AnchorMax: {x: .899999976, y: .119999997}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -3119,6 +3119,8 @@ GameObject:
   - 114: {fileID: 827084617}
   - 114: {fileID: 827084618}
   - 114: {fileID: 827084619}
+  - 114: {fileID: 827084620}
+  - 114: {fileID: 827084621}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3256,8 +3258,7 @@ MonoBehaviour:
   durationYears: 0
   duration: 0
   hotnessText: {fileID: 648454533}
-  intelligenceText: {fileID: 1096183995}
-  kindnessText: {fileID: 1400346799}
+  personalityText: {fileID: 1096183995}
   wealthText: {fileID: 780876496}
   careerText: {fileID: 290475532}
   careerProgress: {fileID: 478020537}
@@ -3282,26 +3283,10 @@ MonoBehaviour:
   - 
   - 
   - 
-  wealthRate:
-  - $
-  - $$
-  - $$$
-  - $$$$
-  - $$$$$
-  careerStates:
-  - Amateur
-  - Novice
-  - Apprentice
-  - Journeyman
-  - Professional
-  - Expert
-  - Guru
-  careerThresholds: 14000000280000003c000000500000006400000078000000
   careerFillMaxPartner: 0
   careerFillMinPartner: 0
   careerStepPartner: 0
   canvas: {fileID: 827084607}
-  relationshipText: {fileID: 1700750863}
   datingPanel: {fileID: 1476594246}
   haveBabyButton: {fileID: 864552734}
   getMarriedButton: {fileID: 2108923786}
@@ -3331,8 +3316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hotnessText: {fileID: 689780587}
-  intelligenceText: {fileID: 840915519}
-  kindnessText: {fileID: 832987243}
+  personalityText: {fileID: 840915519}
   wealthText: {fileID: 2059958060}
   careerText: {fileID: 237995305}
   nameText: {fileID: 1105018633}
@@ -3340,11 +3324,6 @@ MonoBehaviour:
   partnerMonth: 0
   partnerChildren: 0
   partnerDivorces: 0
-  aspectRate:
-  - Poor
-  - Average
-  - Good
-  - Excellent
   aspectvalue:
   - 0
   - 0
@@ -3431,9 +3410,9 @@ MonoBehaviour:
   partnerName: 
   exName: 
   exDuration: 0
-  relationshipText: {fileID: 1700750863}
   canvas: {fileID: 827084607}
   exHappiness: 0
+  invest: 0
   investRange:
   - 33.5
   - 66.5
@@ -3450,7 +3429,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 552064262}
   canvas: {fileID: 827084607}
-  relationshipText: {fileID: 1700750863}
   DateButton: {fileID: 1643708184}
   HaveBaby: {fileID: 864552735}
   GetMarried: {fileID: 2108923787}
@@ -3492,7 +3470,6 @@ MonoBehaviour:
   CareerFocus: 0
   careerCoolDown: 0
   canvas: {fileID: 827084607}
-  relationshipText: {fileID: 1700750863}
 --- !u!114 &827084617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3560,79 +3537,89 @@ MonoBehaviour:
   player: {fileID: 1854597144}
   partner: {fileID: 1612214204}
   canvas: {fileID: 827084607}
-  relationshipText: {fileID: 1700750863}
---- !u!1 &832987241
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 224: {fileID: 832987242}
-  - 222: {fileID: 832987244}
-  - 114: {fileID: 832987243}
-  m_Layer: 5
-  m_Name: KindnessValue
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &832987242
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 832987241}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1064003989}
-  m_RootOrder: 4
-  m_AnchorMin: {x: .100000001, y: .280000001}
-  m_AnchorMax: {x: .899999976, y: .379999995}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: .5, y: .5}
---- !u!114 &832987243
+--- !u!114 &827084620
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 832987241}
+  m_GameObject: {fileID: 827084607}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 60ccfd5ed6f924fd5b1640b266ba8a13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 1
-    m_BestFit: 1
-    m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 4
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: Excellent
---- !u!222 &832987244
-CanvasRenderer:
+  canvas: {fileID: 827084607}
+  relationshipStrength: 0
+  playerHappiness: 0
+  partnerHappiness: 0
+  button: {fileID: 158990196}
+  buttonImage: {fileID: 158990195}
+  playerRating: 0
+  partnerRating: 0
+  countdown: 0
+  partnerStates:
+  - ' looks annoyed.'
+  - ' seems distant.'
+  - ' appears content.'
+  - ' seems very happy.'
+  - ' clearly adores you.'
+  partnerThresholds: 0000000014000000280000003c00000050000000
+  states:
+  - 'You hate your partner. '
+  - 'Things could be better. '
+  - 'You get by ok. '
+  - 'You are happy. '
+  - 'You are in love. '
+  stateThresholds: 0000000014000000280000003c00000050000000
+  deltaDenominator: 12
+  relationshipMin: -1
+  relationshipMax: 1
+  loveBonus: 1
+  contentmentBonus: .5
+  invest: 0
+  partnerChemistry: 0
+  chemistryMin: -1
+  chemistryMax: 1
+  babyThreshold: 70
+  marriageThreshold: 80
+--- !u!114 &827084621
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 832987241}
+  m_GameObject: {fileID: 827084607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5cbb2982a33f47b2a3e2498f3950b41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wealthRate:
+  - $
+  - $$
+  - $$$
+  - $$$$
+  - $$$$$
+  careerStates:
+  - student
+  - intern
+  - junior
+  - competent
+  - professional
+  - expert
+  - guru
+  looksStates:
+  - ugly
+  - plain
+  - fair
+  - good looking
+  - hot
+  personalityStates:
+  - boring
+  - awkward
+  - pleasant
+  - charming
+  - inspiring
+  careerThresholds: 0a0000001900000028000000460000006900000091000000
 --- !u!1 &840915517
 GameObject:
   m_ObjectHideFlags: 0
@@ -3644,7 +3631,7 @@ GameObject:
   - 222: {fileID: 840915520}
   - 114: {fileID: 840915519}
   m_Layer: 5
-  m_Name: IntelligenceValue
+  m_Name: PersonalityValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3662,8 +3649,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1064003989}
   m_RootOrder: 3
-  m_AnchorMin: {x: .100000001, y: .379999995}
-  m_AnchorMax: {x: .899999976, y: .479999989}
+  m_AnchorMin: {x: .100000001, y: .280000001}
+  m_AnchorMax: {x: .899999976, y: .379999995}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -3698,7 +3685,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Excellent
+  m_Text: charming
 --- !u!222 &840915520
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4127,7 +4114,6 @@ RectTransform:
   - {fileID: 1612214203}
   - {fileID: 689780586}
   - {fileID: 840915518}
-  - {fileID: 832987242}
   - {fileID: 237995304}
   - {fileID: 1393180347}
   - {fileID: 116008060}
@@ -4203,7 +4189,6 @@ RectTransform:
   - {fileID: 1854597143}
   - {fileID: 648454532}
   - {fileID: 1096183994}
-  - {fileID: 1400346798}
   - {fileID: 290475531}
   - {fileID: 88060412}
   - {fileID: 248056493}
@@ -4380,7 +4365,7 @@ GameObject:
   - 222: {fileID: 1096183996}
   - 114: {fileID: 1096183995}
   m_Layer: 5
-  m_Name: IntelligenceValue
+  m_Name: PersonalityValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4398,8 +4383,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1065339913}
   m_RootOrder: 3
-  m_AnchorMin: {x: .100000001, y: .379999995}
-  m_AnchorMax: {x: .899999976, y: .479999989}
+  m_AnchorMin: {x: .100000001, y: .280000001}
+  m_AnchorMax: {x: .899999976, y: .379999995}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -4434,7 +4419,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Excellent
+  m_Text: charming
 --- !u!222 &1096183996
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4892,7 +4877,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4902,12 +4887,12 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 10
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 30
     m_Alignment: 0
-    m_RichText: 1
+    m_RichText: 0
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
@@ -5219,7 +5204,7 @@ RectTransform:
   m_Children:
   - {fileID: 704987049}
   m_Father: {fileID: 1064003989}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_AnchorMin: {x: .150000006, y: .119999997}
   m_AnchorMax: {x: .850000024, y: .159999996}
   m_AnchoredPosition: {x: 0, y: -3.05175781e-05}
@@ -5258,78 +5243,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1393180346}
---- !u!1 &1400346797
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 224: {fileID: 1400346798}
-  - 222: {fileID: 1400346800}
-  - 114: {fileID: 1400346799}
-  m_Layer: 5
-  m_Name: KindnessValue
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1400346798
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1400346797}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1065339913}
-  m_RootOrder: 4
-  m_AnchorMin: {x: .100000001, y: .280000001}
-  m_AnchorMax: {x: .899999976, y: .379999995}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: .5, y: .5}
---- !u!114 &1400346799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1400346797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 1
-    m_BestFit: 1
-    m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 4
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: Excellent
---- !u!222 &1400346800
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1400346797}
 --- !u!1 &1443409281
 GameObject:
   m_ObjectHideFlags: 0
@@ -5760,7 +5673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: .423529416, g: .721568644, b: .423529416, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -6091,8 +6004,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1064003989}
   m_RootOrder: 1
-  m_AnchorMin: {x: .5, y: .699999988}
-  m_AnchorMax: {x: .5, y: .699999988}
+  m_AnchorMin: {x: .5, y: .649999976}
+  m_AnchorMax: {x: .5, y: .649999976}
   m_AnchoredPosition: {x: 0, y: 1.52587891e-05}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: .5, y: .5}
@@ -6472,7 +6385,6 @@ GameObject:
   - 224: {fileID: 1700750864}
   - 222: {fileID: 1700750867}
   - 114: {fileID: 1700750866}
-  - 114: {fileID: 1700750865}
   m_Layer: 5
   m_Name: Comment
   m_TagString: Untagged
@@ -6497,48 +6409,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
---- !u!114 &1700750865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1700750863}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60ccfd5ed6f924fd5b1640b266ba8a13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvas: {fileID: 827084607}
-  relationshipStrength: 0
-  playerHappiness: 0
-  partnerHappiness: 0
-  button: {fileID: 158990196}
-  buttonImage: {fileID: 158990195}
-  playerRating: 0
-  partnerRating: 0
-  countdown: 0
-  partnerStates:
-  - ' looks annoyed.'
-  - ' seems distant.'
-  - ' appears content.'
-  - ' seems very happy.'
-  - ' clearly adores you.'
-  partnerThresholds: 0000000014000000280000003c00000050000000
-  states:
-  - 'You hate your partner. '
-  - 'Things could be better. '
-  - 'You get by ok. '
-  - 'You are happy. '
-  - 'You are in love. '
-  stateThresholds: 0000000014000000280000003c00000050000000
-  deltaDenominator: 6
-  relationshipMin: -1
-  relationshipMax: 1
-  loveBonus: 1
-  contentmentBonus: 1
-  invest: 0
-  babyThreshold: 75
-  marriageThreshold: 60
 --- !u!114 &1700750866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7037,8 +6907,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1065339913}
   m_RootOrder: 1
-  m_AnchorMin: {x: .5, y: .699999988}
-  m_AnchorMax: {x: .5, y: .699999988}
+  m_AnchorMin: {x: .5, y: .649999976}
+  m_AnchorMax: {x: .5, y: .649999976}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: .5, y: .5}
@@ -7319,7 +7189,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1064003989}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_AnchorMin: {x: .5, y: 0}
   m_AnchorMax: {x: .899999976, y: .119999997}
   m_AnchoredPosition: {x: 0, y: 0}

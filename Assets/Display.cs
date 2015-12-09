@@ -395,7 +395,7 @@ public class Display : MonoBehaviour {
 		{
 			career.Focus();
 		}
-		if (relationship.invest == true)
+		if (relationship.countdown >= 0)
 		{
 			relationship.Invest();
 		}
@@ -416,7 +416,7 @@ public class Display : MonoBehaviour {
 		}
 		if ( impendingDeath == true )
 		{
-			deathColor.a += 0.1f;
+			deathColor.a += 1.0f / 12.0f;
 			Deathfade.color = deathColor;
 		}
 	}
@@ -454,6 +454,8 @@ public class Display : MonoBehaviour {
 		careerFillMax = textupdate.careerThresholds[0];
 		careerFillMin = 0;
 		careerStep = 0;
+		relationship.investEffectPlayer = 0;
+		relationship.investEffectPartner = 0;
 
 		if ( maleToggle.isOn == true ) {
 			playerIsMale = true;
@@ -480,6 +482,8 @@ public class Display : MonoBehaviour {
 		talk.lastEventCount = 0;
 		talk.ResetTalk();
 		talk.Speak();
+		relationship.investEffectPlayer = 0;
+		relationship.investEffectPartner = 0;
 	}
 
 	public void BreakUp()
@@ -544,6 +548,8 @@ public class Display : MonoBehaviour {
 		talk.lastEventCount = 0;
 		talk.Speak();
 		maxHappiness = 50;
+		relationship.investEffectPlayer = 0;
+		relationship.investEffectPartner = 0;
 	}
 
 	public void Dumped()
@@ -601,6 +607,8 @@ public class Display : MonoBehaviour {
 		inARelationship = false;
 		talk.lastEventCount = 0;
 		talk.Speak();
+		relationship.investEffectPlayer = 0;
+		relationship.investEffectPartner = 0;
 	}
 
 	public void GenderToggle()

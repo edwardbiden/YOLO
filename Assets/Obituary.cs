@@ -133,7 +133,7 @@ public class Obituary : MonoBehaviour {
 		}
 		if ( display.relationshipCount == 0 ) 
 		{
-			tombstone.text += ". \n\nYou never hooked up. Ever.";
+			tombstone.text += "\n\nYou never hooked up. Ever.";
 		}
 
 		if ( display.inARelationship == true ) 

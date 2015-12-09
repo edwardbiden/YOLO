@@ -3579,11 +3579,17 @@ MonoBehaviour:
   loveBonus: 1
   contentmentBonus: .5
   invest: 0
+  playerChemistry: 0
   partnerChemistry: 0
   chemistryMin: -1
   chemistryMax: 1
   babyThreshold: 70
   marriageThreshold: 80
+  investEffectPlayer: 0
+  investEffectPartner: 0
+  investmentEffect: 0
+  investmentDecay: 0
+  happinessGap: 0
 --- !u!114 &827084621
 MonoBehaviour:
   m_ObjectHideFlags: 0

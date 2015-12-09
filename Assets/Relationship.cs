@@ -33,13 +33,18 @@ public class Relationship : MonoBehaviour {
 	public float loveBonus;
 	public float contentmentBonus;
 	public bool invest;
-	private float playerChemistry;
+	public float playerChemistry;
 	public float partnerChemistry;
 	public float chemistryMin;
 	public float chemistryMax;
 
 	public int babyThreshold;
 	public int marriageThreshold;
+	public float investEffectPlayer;
+	public float investEffectPartner;
+	public float investmentEffect;
+	public float investmentDecay;
+	public float happinessGap;
 
 	void Start () {
 		partner = canvas.GetComponent<Partner>();
@@ -54,6 +59,9 @@ public class Relationship : MonoBehaviour {
 		button.GetComponent<Button>().interactable = true;
 		countdown = 0;
 		invest = false;
+		investEffectPlayer = 0;
+		investmentEffect = 0.25f;
+		investmentDecay = 18f;
 	}
 	
 	public void Invest()
@@ -85,9 +93,9 @@ public class Relationship : MonoBehaviour {
 		career.careerCoolDown = 2f;
 		countdown = display.jumpTime;
 		options.buttonDisactivate();
-		invest = true;
 		career.buttonInactive();
 		talk.lastEvent = "Invest";
+		investEffectPlayer += investmentEffect;
 		talk.lastEventCount = 2;
 		talk.Speak();
 		display.FastForward();
@@ -95,13 +103,25 @@ public class Relationship : MonoBehaviour {
 
 	public void UpdateRelationship () {
 		// calculate playerHappiness
-		playerHappiness = Mood(display.aspectvalue, partner.aspectvalue, playerHappiness, playerChemistry);
-		playerRating = Rating(playerHappiness, playerRating);
-		Debug.Log ("player: " + playerHappiness);
+		playerHappiness = Mood(display.aspectvalue, partner.aspectvalue, playerHappiness, playerChemistry, investEffectPlayer, investEffectPartner);
+		partnerHappiness = Mood(partner.aspectvalue, display.aspectvalue, partnerHappiness, partnerChemistry, investEffectPartner, investEffectPlayer);
 
-		partnerHappiness = Mood(partner.aspectvalue, display.aspectvalue, partnerHappiness, partnerChemistry);
+		// lower happiness drags you down
+		happinessGap = (Mathf.Max (partnerHappiness, playerHappiness) - Mathf.Min (partnerHappiness, playerHappiness)) / 10;
+		if (playerHappiness > partnerHappiness)
+		{
+			playerHappiness -= happinessGap;
+		}
+		if (partnerHappiness > playerHappiness)
+		{
+			partnerHappiness -= happinessGap;
+		}
+
+		playerRating = Rating(playerHappiness, playerRating);
 		partnerRating = Rating(partnerHappiness, partnerRating);
-		Debug.Log ("partner: " + partnerHappiness);
+
+		investEffectPartner -= investEffectPartner / investmentDecay;
+		investEffectPlayer -= investEffectPlayer / investmentDecay;
 
 		if ( playerHappiness >= babyThreshold && partnerHappiness >= babyThreshold && display.pregnant == false && display.canHaveBabies == true)
 		{
@@ -114,28 +134,24 @@ public class Relationship : MonoBehaviour {
 		}
 	}
 
-	public float Mood( float[] myvalues, float[] yourvalues, float myHappiness, float myChemistry) 
+	public float Mood( float[] myvalues, float[] yourvalues, float myHappiness, float myChemistry, float myInvestment, float yourInvestment) 
 	{
 		delta = 0;
 		for ( int a = 0; a < 3; a++ )
 		{
 			delta += myvalues[a] - yourvalues[a];	
 		}
-		// balance is way off
-		Debug.Log ("myHappiness: " + myHappiness);
+		// delta is difference in attributes, deltaDenominator is "allowed difference"
 		myHappiness -= (delta / deltaDenominator);
-		Debug.Log ("delta / denom: " + (-delta / deltaDenominator));
 
 		// novelty effect
 		if ( display.durationYears < 1 && display.durationMonths <=3 )
 		{
 			myHappiness += loveBonus;
-			Debug.Log ("lovebonus: " + loveBonus);
 		}
 		if ( display.durationYears < 2 )
 		{
 			myHappiness += contentmentBonus;
-			Debug.Log ("contentmentbonus: " + contentmentBonus);
 		}
 
 		// Chemistry - random modifier
@@ -145,13 +161,14 @@ public class Relationship : MonoBehaviour {
 			myChemistry = Random.Range( chemistryMin, chemistryMax );
 		}
 		myHappiness += myChemistry;
-		Debug.Log ("myChemistry: " + myChemistry);
-		Debug.Log ("myHappiness: " + myHappiness);
 
-		if ( invest == true || partner.invest == 0)
+		// relationship investment
+		if ( myInvestment <= 0) 
 		{
-			myHappiness += 1;
+			myInvestment = 0;
 		}
+		myHappiness += myInvestment + yourInvestment;
+
 		if ( myHappiness >= 100 )
 		{
 			myHappiness = 100;

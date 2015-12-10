@@ -104,13 +104,20 @@ public class Display : MonoBehaviour {
 	public Image PartnerCareer;
 	public Image PartnerFill;
 	public Image Deathfade;
+	public Image Birthfade;
+	private float FadeInCycle;
+	private bool FadeIn;
 	private bool impendingDeath;
 
 	private Color tempColor;
 	private Color deathColor;
+	private Color birthColor;
+	public float birthTime;
 	
 	public void Start () 
 	{
+		FadeInCycle = 0;
+		FadeIn = false;
 		startTime = false;
 		quickTime = false;
 		startButton.interactable = false;
@@ -153,6 +160,7 @@ public class Display : MonoBehaviour {
 		maxHappiness = 50;
 		jumpTime = 5;
 		deathColor = Deathfade.color;
+		birthColor = Birthfade.color;
 		impendingDeath = false;
 	}
 	
@@ -267,6 +275,26 @@ public class Display : MonoBehaviour {
 			{
 				startButton.interactable = false;
 			}
+		}
+
+		// birthfade in
+		if ( FadeIn == true && FadeInCycle < 1 )
+		{
+			birthColor.a += Time.deltaTime * birthTime;
+			Birthfade.color = birthColor;
+			FadeInCycle = birthColor.a;
+		}
+		if ( FadeIn == true && FadeInCycle >= 1 && FadeInCycle < 2 )
+		{
+			birthPanel.SetActive(false);
+			birthColor.a -= Time.deltaTime * birthTime;
+			Birthfade.color = birthColor;
+			FadeInCycle = 2 - birthColor.a;
+		}
+		if ( FadeIn == true && FadeInCycle >= 2)
+		{
+			startTime = true;
+			FadeIn = false;
 		}
 
 		// update texts last
@@ -465,8 +493,9 @@ public class Display : MonoBehaviour {
 		{
 			playerIsMale = false;
 		}
-		birthPanel.SetActive(false);
-		startTime = true;
+
+		FadeIn = true;
+
 		for ( int i = 0; i < 4; i++ )
 		{
 			partner.exvalue[i] = 0;

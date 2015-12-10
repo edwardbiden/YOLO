@@ -16,8 +16,7 @@ public class Partner : MonoBehaviour {
 
 	public int partnerChildren;
 	public int partnerDivorces;
-
-//	public string[] aspectRate = {"Poor","Average","Good","Excellent"};
+	
 	public float[] aspectvalue = {0,0,0,0};
 	public float[] exvalue = {0,0,0,0};
 	public float[] maxaspectvalue = {0,0,0,0};
@@ -55,7 +54,6 @@ public class Partner : MonoBehaviour {
 		exDuration = 0;
 		wealthGap = 0;
 		exHappiness = 0;
-
 	}
 
 	public void Birth() 
@@ -63,11 +61,11 @@ public class Partner : MonoBehaviour {
 		partnerMonth = 0;
 		if ( display.playerIsMale == true )
 		{
-			partnerFloat = Random.Range( display.age / 2 + 7, display.age * 1.1f);	
+			partnerFloat = Random.Range( Mathf.Max (display.age / 2 + 7, display.age - 20), Mathf.Min (display.age * 1.1f, 90));	
 		}
 		if ( display.playerIsMale == false )
 		{
-			partnerFloat = Random.Range( display.age / 1.1f , (display.age - 7) * 2);	
+			partnerFloat = Random.Range( Mathf.Max (display.age / 1.1f, display.age - 20) , Mathf.Min ((display.age - 7) * 2,90));	
 		}
 		partnerAge = (int)partnerFloat;
 

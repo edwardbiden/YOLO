@@ -309,11 +309,6 @@ public class Display : MonoBehaviour {
 		}
 
 		talk.lastEventCount++;
-		ageText.text = age.ToString("#");
-		partnerAgeText.text = partner.partnerAge.ToString("#");
-		monthText.text = months[monthCount];
-		year = age + birthYear;
-		yearText.text = year.ToString();
 
 		int r = Random.Range(0,100);
 		if ( partnerAlive == false && r <= matchChance && monthsSinceBirth >= 3 && career.CareerFocus == false )
@@ -419,6 +414,12 @@ public class Display : MonoBehaviour {
 			deathColor.a += 1.0f / 12.0f;
 			Deathfade.color = deathColor;
 		}
+
+		ageText.text = age.ToString("#");
+		partnerAgeText.text = partner.partnerAge.ToString("#");
+		monthText.text = months[monthCount];
+		year = age + birthYear;
+		yearText.text = year.ToString();
 	}
 
 	void CanHaveBabies()
@@ -484,6 +485,8 @@ public class Display : MonoBehaviour {
 		talk.Speak();
 		relationship.investEffectPlayer = 0;
 		relationship.investEffectPartner = 0;
+		haveBabyButton.SetActive(false);
+		getMarriedButton.SetActive(false);
 	}
 
 	public void BreakUp()

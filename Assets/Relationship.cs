@@ -61,7 +61,7 @@ public class Relationship : MonoBehaviour {
 		invest = false;
 		investEffectPlayer = 0;
 		investmentEffect = 0.25f;
-		investmentDecay = 18f;
+		investmentDecay = 60f;
 	}
 	
 	public void Invest()
@@ -127,10 +127,18 @@ public class Relationship : MonoBehaviour {
 		{
 			display.haveBabyButton.SetActive(true);
 		}
+		else
+		{
+			display.haveBabyButton.SetActive(false);
+		}
 
 		if ( playerHappiness >= (marriageThreshold - 20) && display.married == false )
 		{
 			display.getMarriedButton.SetActive(true);
+		}
+		else
+		{
+			display.getMarriedButton.SetActive(false);
 		}
 	}
 

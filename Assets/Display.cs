@@ -162,6 +162,8 @@ public class Display : MonoBehaviour {
 		deathColor = Deathfade.color;
 		birthColor = Birthfade.color;
 		impendingDeath = false;
+		relationship.playerpositiveemitter.GetComponent<ParticleSystem>().enableEmission = false;
+		relationship.playernegativeemitter.GetComponent<ParticleSystem>().enableEmission = false;
 	}
 	
 
@@ -296,6 +298,41 @@ public class Display : MonoBehaviour {
 			startTime = true;
 			FadeIn = false;
 		}
+
+		if ( relationship.playerHappiness - relationship.pastplayerhappiness > 0 )
+		{
+			relationship.playerpositiveemitter.GetComponent<ParticleSystem>().enableEmission = true;
+			relationship.playernegativeemitter.GetComponent<ParticleSystem>().enableEmission = false;
+			relationship.playerpositiveemitter.GetComponent<ParticleSystem>().Emit(Mathf.RoundToInt(relationship.playerHappiness - relationship.pastplayerhappiness));
+		}
+		if ( relationship.playerHappiness - relationship.pastplayerhappiness < 0 )
+		{
+			relationship.playerpositiveemitter.GetComponent<ParticleSystem>().enableEmission = false;
+			relationship.playernegativeemitter.GetComponent<ParticleSystem>().enableEmission = true;
+			relationship.playernegativeemitter.GetComponent<ParticleSystem>().Emit(Mathf.RoundToInt(relationship.pastplayerhappiness - relationship.playerHappiness));
+		}
+		if ( inARelationship == true && relationship.partnerHappiness - relationship.pastpartnerhappiness > 0 )
+		{
+			relationship.partnerpositiveemitter.GetComponent<ParticleSystem>().enableEmission = true;
+			relationship.partnernegativeemitter.GetComponent<ParticleSystem>().enableEmission = false;
+			relationship.playerpositiveemitter.GetComponent<ParticleSystem>().Emit(Mathf.RoundToInt(relationship.playerHappiness - relationship.pastplayerhappiness));
+		}
+		if ( inARelationship == true && relationship.partnerHappiness - relationship.pastpartnerhappiness < 0 )
+		{
+			relationship.partnerpositiveemitter.GetComponent<ParticleSystem>().enableEmission = false;
+			relationship.partnernegativeemitter.GetComponent<ParticleSystem>().enableEmission = true;
+			relationship.partnernegativeemitter.GetComponent<ParticleSystem>().Emit(Mathf.RoundToInt(relationship.pastplayerhappiness - relationship.playerHappiness));
+		}
+		if ( inARelationship == false )
+		{
+			relationship.partnerpositiveemitter.GetComponent<ParticleSystem>().enableEmission = false;
+			relationship.partnernegativeemitter.GetComponent<ParticleSystem>().enableEmission = false;
+		}
+
+
+
+		relationship.pastpartnerhappiness = relationship.partnerHappiness;
+		relationship.pastplayerhappiness = relationship.playerHappiness;
 
 		// update texts last
 		hotnessText.text = aspectText[0];
@@ -516,6 +553,7 @@ public class Display : MonoBehaviour {
 		relationship.investEffectPartner = 0;
 		haveBabyButton.SetActive(false);
 		getMarriedButton.SetActive(false);
+		relationship.pastpartnerhappiness = relationship.partnerHappiness;
 	}
 
 	public void BreakUp()

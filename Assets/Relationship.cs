@@ -15,6 +15,12 @@ public class Relationship : MonoBehaviour {
 	public float partnerHappiness;
 	public Transform button;
 	public GameObject buttonImage;
+	public GameObject playerpositiveemitter;
+	public GameObject playernegativeemitter;
+	public GameObject partnerpositiveemitter;
+	public GameObject partnernegativeemitter;
+	public float pastplayerhappiness;
+	public float pastpartnerhappiness;
 
 	public int playerRating;
 	public int partnerRating;
@@ -62,6 +68,7 @@ public class Relationship : MonoBehaviour {
 		investEffectPlayer = 0;
 		investmentEffect = 0.25f;
 		investmentDecay = 60f;
+		pastplayerhappiness = 50;
 	}
 	
 	public void Invest()

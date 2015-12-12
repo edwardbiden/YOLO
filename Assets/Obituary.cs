@@ -45,7 +45,7 @@ public class Obituary : MonoBehaviour {
 		// number of marriages
 		if (display.marriageCount == 0)
 		{
-			tombstone.text += "You but never married";
+			tombstone.text += "You never married";
 		}
 		if (display.marriageCount == 1)
 		{
@@ -121,9 +121,14 @@ public class Obituary : MonoBehaviour {
 			tombstone.text += "\n\nYour first relationship was with ";
 			significantOther( soNames[0], soLength[0], marriedSO [0], soChildren [0]);
 		}
-		if ( soLength[1] > 0 ) 
+		if ( soLength[1] > 0 && soLength[1] > soLength[2]) 
 		{
 			tombstone.text += "\n\nYour longest relationship was with ";
+			significantOther( soNames[1], soLength[1], marriedSO [1], soChildren [1]);
+		}
+		if ( soLength[1] > 0 && soLength[1] <= soLength[2]) 
+		{
+			tombstone.text += "\n\nYou were with ";
 			significantOther( soNames[1], soLength[1], marriedSO [1], soChildren [1]);
 		}
 		if ( soLength[2] > 0 ) 

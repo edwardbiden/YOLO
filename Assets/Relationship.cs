@@ -66,7 +66,7 @@ public class Relationship : MonoBehaviour {
 		countdown = 0;
 		invest = false;
 		investEffectPlayer = 0;
-		investmentEffect = 0.25f;
+		investmentEffect = 0.15f;
 		investmentDecay = 60f;
 		pastplayerhappiness = 50;
 	}
@@ -97,8 +97,7 @@ public class Relationship : MonoBehaviour {
 	public void StartInvest () 
 	{
 		button.GetComponent<Button>().interactable = false;
-		career.careerCoolDown = 2f;
-		countdown = display.jumpTime;
+		countdown = 3;
 		options.buttonDisactivate();
 		career.buttonInactive();
 		talk.lastEvent = "Invest";
@@ -129,6 +128,7 @@ public class Relationship : MonoBehaviour {
 
 		investEffectPartner -= investEffectPartner / investmentDecay;
 		investEffectPlayer -= investEffectPlayer / investmentDecay;
+		Debug.Log (investEffectPlayer);
 
 		if ( playerHappiness >= babyThreshold && partnerHappiness >= babyThreshold && display.pregnant == false && display.canHaveBabies == true)
 		{

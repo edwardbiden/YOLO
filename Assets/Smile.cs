@@ -5,13 +5,16 @@ using System.Collections;
 public class Smile
 : MonoBehaviour {
 
-	public Sprite pained;
-	public Sprite depressed;
-	public Sprite sad;
-	public Sprite basic;
-	public Sprite content;
-	public Sprite blushing;
-	public Sprite hearteyes;
+	public Sprite mood0;
+	public Sprite mood1;
+	public Sprite mood2;
+	public Sprite mood3;
+	public Sprite mood4;
+	public Sprite mood5;
+	public Sprite mood6;
+	public Sprite mood7;
+	public Sprite mood8;
+	public Sprite mood9;
 
 	public Image player;
 	public Image partner;
@@ -27,7 +30,7 @@ public class Smile
 	}
 	
 	void Update () {
-		Moods(player, relationship.playerHappiness);
+		Moods (player, relationship.playerHappiness);
 		Moods (partner, relationship.partnerHappiness);
 
 		tempColor = partner.color;
@@ -37,33 +40,45 @@ public class Smile
 
 	void Moods(Image mood, float happiness)
 	{
-		if ( happiness < 15)
+		if ( happiness < 5)
 		{
-			mood.sprite = pained;
+			mood.sprite = mood0;
 		}
-		if ( happiness >= 15 && happiness < 30 )
+		if ( happiness >= 5 && happiness < 17 )
 		{
-			mood.sprite = depressed;
+			mood.sprite = mood1;
 		}
-		if ( happiness >= 30 && happiness < 45 )
+		if ( happiness >= 17 && happiness < 28 )
 		{
-			mood.sprite = sad;
+			mood.sprite = mood2;
 		}
-		if ( happiness >= 45 && happiness < 65 )
+		if ( happiness >= 28 && happiness < 39 )
 		{
-			mood.sprite = basic;
+			mood.sprite = mood3;
 		}
-		if ( happiness >= 65 && happiness < 80 )
+		if ( happiness >= 39 && happiness < 50 )
 		{
-			mood.sprite = content;
+			mood.sprite = mood4;
 		}
-		if ( happiness >= 80 && happiness < 95 )
+		if ( happiness >= 50 && happiness < 61 )
 		{
-			mood.sprite = blushing;
+			mood.sprite = mood5;
+		}
+		if ( happiness >= 61 && happiness < 72 )
+		{
+			mood.sprite = mood6;
+		}
+		if ( happiness >= 72 && happiness < 83 )
+		{
+			mood.sprite = mood7;
+		}
+		if ( happiness >= 83 && happiness < 95 )
+		{
+			mood.sprite = mood8;
 		}
 		if ( happiness >= 95 )
 		{
-			mood.sprite = hearteyes;
+			mood.sprite = mood9;
 		}
 	}
 }

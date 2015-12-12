@@ -18,6 +18,11 @@ public class Display : MonoBehaviour {
 	public int deathYear;
 	public int deathMonth;
 	public int jumpTime;
+	public Transform pausebutton;
+	public Transform playbutton;
+	public Transform fastbutton;
+	private bool gowing;
+	private bool glowUp;
 
 	public float time;
 	public int count;
@@ -42,6 +47,11 @@ public class Display : MonoBehaviour {
 	public Text statusText;
 	public Text nameText;
 	public Text partnerAgeText;
+	private int nameCount;
+	private string playerName;
+	public InputField inputNameText;
+	public InputField monthInput;
+	public InputField yearInput;
 
 	public Text childrenText;
 	public Text durationText;
@@ -62,7 +72,7 @@ public class Display : MonoBehaviour {
 	public int birthYear;
 	private int year;
 
-	private string[] months = {"January","Febrary","March","April","May","June","July","August","September","October","November","December"};
+	private string[] months = {"January","February","March","April","May","June","July","August","September","October","November","December"};
 	public float[] aspectvalue = {0,0,0,0};
 	public float[] maxaspectvalue = {0,0,0,0};
 	public string[] aspectText = {"","","",""};
@@ -105,6 +115,7 @@ public class Display : MonoBehaviour {
 	public Image PartnerFill;
 	public Image Deathfade;
 	public Image Birthfade;
+	public Image Glowfade;
 	private float FadeInCycle;
 	private bool FadeIn;
 	private bool impendingDeath;
@@ -112,10 +123,20 @@ public class Display : MonoBehaviour {
 	private Color tempColor;
 	private Color deathColor;
 	private Color birthColor;
+	private Color glowColor;
 	public float birthTime;
+	private bool fastTimeOn;
+	private bool glowing;
 	
 	public void Start () 
 	{
+		pausebutton.GetComponent<Button>().interactable = false;
+		playbutton.GetComponent<Button>().interactable = true;
+		fastbutton.GetComponent<Button>().interactable = true;
+		glowing = true;
+		glowUp = true;
+		glowColor = Glowfade.color;
+		glowColor.a = 0;
 		FadeInCycle = 0;
 		FadeIn = false;
 		startTime = false;
@@ -136,7 +157,7 @@ public class Display : MonoBehaviour {
 		divorceCount = 0;
 		monthCount = 2;
 		status = "You are single";
-		fastforward = 1;
+		fastforward = 0;
 		partner = canvas.GetComponent<Partner>();
 		options = canvas.GetComponent<Options>();
 		relationship = canvas.GetComponent<Relationship>();
@@ -155,6 +176,7 @@ public class Display : MonoBehaviour {
 		durationMonths = 0;
 		durationYears = 0;
 		fastForwardCount = 0;
+		fastTimeOn = false;
 		partner.exName = "";
 		partner.exDuration = 0;
 		maxHappiness = 50;
@@ -164,6 +186,20 @@ public class Display : MonoBehaviour {
 		impendingDeath = false;
 		relationship.playerpositiveemitter.GetComponent<ParticleSystem>().enableEmission = false;
 		relationship.playernegativeemitter.GetComponent<ParticleSystem>().enableEmission = false;
+
+		if ( Random.Range (0,101) > 50)
+		{
+			nameCount = Random.Range(0,partner.maleNames.Length);
+			playerName = partner.maleNames[nameCount];
+		}
+		else
+		{
+			nameCount = Random.Range(0,partner.femaleNames.Length);
+			playerName = partner.femaleNames[nameCount];
+		}
+		inputNameText.text = playerName;
+		monthInput.text = Random.Range (1,13).ToString();
+		yearInput.text = Random.Range (1950,1995).ToString();
 	}
 	
 
@@ -299,29 +335,29 @@ public class Display : MonoBehaviour {
 			FadeIn = false;
 		}
 
-		if ( relationship.playerHappiness - relationship.pastplayerhappiness > 0 )
+		if ( relationship.playerHappiness - relationship.pastplayerhappiness > 0 && impendingDeath == false )
 		{
 			relationship.playerpositiveemitter.GetComponent<ParticleSystem>().enableEmission = true;
 			relationship.playernegativeemitter.GetComponent<ParticleSystem>().enableEmission = false;
 			relationship.playerpositiveemitter.GetComponent<ParticleSystem>().Emit(Mathf.RoundToInt(relationship.playerHappiness - relationship.pastplayerhappiness));
 		}
-		if ( relationship.playerHappiness - relationship.pastplayerhappiness < 0 )
+		if ( relationship.playerHappiness - relationship.pastplayerhappiness < 0 && impendingDeath == false )
 		{
 			relationship.playerpositiveemitter.GetComponent<ParticleSystem>().enableEmission = false;
 			relationship.playernegativeemitter.GetComponent<ParticleSystem>().enableEmission = true;
 			relationship.playernegativeemitter.GetComponent<ParticleSystem>().Emit(Mathf.RoundToInt(relationship.pastplayerhappiness - relationship.playerHappiness));
 		}
-		if ( inARelationship == true && relationship.partnerHappiness - relationship.pastpartnerhappiness > 0 )
+		if ( inARelationship == true && relationship.partnerHappiness - relationship.pastpartnerhappiness > 0 && impendingDeath == false )
 		{
 			relationship.partnerpositiveemitter.GetComponent<ParticleSystem>().enableEmission = true;
 			relationship.partnernegativeemitter.GetComponent<ParticleSystem>().enableEmission = false;
-			relationship.playerpositiveemitter.GetComponent<ParticleSystem>().Emit(Mathf.RoundToInt(relationship.playerHappiness - relationship.pastplayerhappiness));
+			relationship.partnerpositiveemitter.GetComponent<ParticleSystem>().Emit(Mathf.RoundToInt(relationship.partnerHappiness - relationship.pastpartnerhappiness));
 		}
-		if ( inARelationship == true && relationship.partnerHappiness - relationship.pastpartnerhappiness < 0 )
+		if ( inARelationship == true && relationship.partnerHappiness - relationship.pastpartnerhappiness < 0 && impendingDeath == false )
 		{
 			relationship.partnerpositiveemitter.GetComponent<ParticleSystem>().enableEmission = false;
 			relationship.partnernegativeemitter.GetComponent<ParticleSystem>().enableEmission = true;
-			relationship.partnernegativeemitter.GetComponent<ParticleSystem>().Emit(Mathf.RoundToInt(relationship.pastplayerhappiness - relationship.playerHappiness));
+			relationship.partnernegativeemitter.GetComponent<ParticleSystem>().Emit(Mathf.RoundToInt(relationship.pastpartnerhappiness - relationship.partnerHappiness));
 		}
 		if ( inARelationship == false )
 		{
@@ -329,10 +365,13 @@ public class Display : MonoBehaviour {
 			relationship.partnernegativeemitter.GetComponent<ParticleSystem>().enableEmission = false;
 		}
 
-
-
 		relationship.pastpartnerhappiness = relationship.partnerHappiness;
 		relationship.pastplayerhappiness = relationship.playerHappiness;
+
+		if (glowing == true)
+		{
+			Glow ();
+		}
 
 		// update texts last
 		hotnessText.text = aspectText[0];
@@ -460,13 +499,16 @@ public class Display : MonoBehaviour {
 			relationship.Invest();
 		}
 
-		if (quickTime == true) {
-			if (fastForwardCount > 0) {
+		if (quickTime == true) 
+		{
+			if ( fastForwardCount > 0) 
+			{
 				fastForwardCount--;
 			}
-			else 
+			if ( fastForwardCount == 0 )
 			{
-				FastForward();
+				fastforward = 1;
+				quickTime = false;
 			}
 		}
 
@@ -485,6 +527,7 @@ public class Display : MonoBehaviour {
 		monthText.text = months[monthCount];
 		year = age + birthYear;
 		yearText.text = year.ToString();
+		Debug.Log ("player: " + relationship.playerHappiness + ". partner: " + relationship.partnerHappiness);
 	}
 
 	void CanHaveBabies()
@@ -772,16 +815,70 @@ public class Display : MonoBehaviour {
 
 	public void FastForward()
 	{
-		if ( quickTime == false )
+		if ( fastTimeOn == false )
 		{
 			quickTime = true;
 			fastforward = jumpTime;
 			fastForwardCount = 5;
 		}
-		else
+	}
+
+	public void FastTime()
+	{
+		fastforward = jumpTime;
+		fastForwardCount = -1;
+		fastTimeOn = true;
+		pausebutton.GetComponent<Button>().interactable = true;
+		playbutton.GetComponent<Button>().interactable = true;
+		fastbutton.GetComponent<Button>().interactable = false;
+		glowing = false;
+		glowColor.a = 0;
+		Glowfade.color = glowColor;
+	}
+
+	public void NormalTime()
+	{
+		fastforward = 1;
+		fastForwardCount = 0;
+		fastTimeOn = false;
+		pausebutton.GetComponent<Button>().interactable = true;
+		playbutton.GetComponent<Button>().interactable = false;
+		fastbutton.GetComponent<Button>().interactable = true;
+		glowing = false;
+		glowColor.a = 0;
+		Glowfade.color = glowColor;
+	}
+
+	public void PauseTime()
+	{
+		fastforward = 0;
+		fastForwardCount = 0;
+		fastTimeOn = false;
+		pausebutton.GetComponent<Button>().interactable = false;
+		playbutton.GetComponent<Button>().interactable = true;
+		fastbutton.GetComponent<Button>().interactable = true;
+	}
+
+	public void Glow()
+	{
+		if ( glowColor.a >= 1)
 		{
-			quickTime = false;
-			fastforward = 1;
+			glowUp = false;
+		}
+		if ( glowColor.a <= 0 )
+		{
+			glowUp = true;
+		}
+
+		if (glowUp == true)
+		{
+			glowColor.a += Time.deltaTime;
+			Glowfade.color = glowColor;
+		}
+		if (glowUp == false)
+		{
+			glowColor.a -= Time.deltaTime;
+			Glowfade.color = glowColor;
 		}
 	}
 }

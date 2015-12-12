@@ -40,18 +40,6 @@ public class Career : MonoBehaviour {
 			buttonImage.SetActive(false);
 			return;
 		}
-
-		if ( careerCoolDown > 0 )
-		{
-			button.GetComponent<Button>().interactable = false;
-		}
-		else 
-		{
-			if ( CareerFocus == false && relationship.invest == false)
-			{
-				button.GetComponent<Button>().interactable = true;
-			}
-		}
 	}
 
 	public void Focus()
@@ -84,7 +72,7 @@ public class Career : MonoBehaviour {
 	{
 		button.GetComponent<Button>().interactable = false;
 		relationship.buttonInactive();
-		countdown = display.jumpTime;
+		countdown = 3;
 		options.buttonDisactivate();
 		CareerFocus = true;
 		talk.lastEvent = "Focus";

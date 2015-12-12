@@ -117,6 +117,7 @@ public class Partner : MonoBehaviour {
 		if ( investCount == 0 )
 		{
 			decide = Random.Range(0,100f);
+			// focus on relationship
 			if ( decide <= investRange[0] ) 
 			{
 				investRange[0] += 1.0f;
@@ -126,15 +127,14 @@ public class Partner : MonoBehaviour {
 				}
 				invest = 0;
 				relationship.investEffectPartner += relationship.investmentEffect;
-				Debug.Log ("focus on relationship " + investRange[0]);
 			}
 			if ( decide > investRange[0] && decide <= investRange[1] ) 
 			{
 				investRange[0] -= 0.5f;
 				investRange[1] += 0.5f;
 				invest = 1;
-				Debug.Log ("do nothing " + investRange[0] + " : " + investRange[1]);
 			}
+			// focus on career
 			if ( decide > investRange[1] ) 
 			{
 				investRange[1] -= 1.0f;
@@ -143,7 +143,6 @@ public class Partner : MonoBehaviour {
 					investRange[0] = investRange[0] - 0.5f;
 				}
 				invest = 2;
-				Debug.Log ("focus on career " + investRange[1]);
 			}
 			investCount = display.jumpTime + 2;
 		}

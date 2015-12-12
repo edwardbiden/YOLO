@@ -18,7 +18,11 @@ public class Talk : MonoBehaviour {
 	public int usedTextMax;
 	public int oneOff;
 	public int oneOffValue;
+	public int oneOffValueCareer;
 	public int[] usedText;
+
+	private bool retiredText;
+	private bool infertileText;
 
 	// Use this for initialization
 	public void Start () {
@@ -28,9 +32,14 @@ public class Talk : MonoBehaviour {
 		
 		lastEvent = "";
 		lastEventCount = 3;
+		lastTextCount = 0;
 		usedTextMax = 100;
 		usedText = new int[100];
-		oneOffValue = 3;
+		oneOffValue = 2;
+		oneOffValueCareer = 4;
+
+		retiredText = true;
+		infertileText = true;
 
 		Comment.text = "Teenage angst ...";
 		textCoolDown = 0;
@@ -126,7 +135,7 @@ public class Talk : MonoBehaviour {
 		}
 		if ( lastEvent == "Focus" && lastEventCount < 3 )
 		{
-			Comment.text = "Your career is improving";
+			Comment.text = "Your career is improving.";
 			lastTextCount = 0;
 			return;
 		}
@@ -136,6 +145,84 @@ public class Talk : MonoBehaviour {
 			lastTextCount = 0;
 			return;
 		}
+		if ( display.age >= 65 && lastEventCount < 3 && retiredText == true )
+		{
+			Comment.text = "You decide it's time to retire.";
+			lastTextCount = 0;
+			retiredText = false;
+			return;
+		}
+		if ( display.playerIsMale == true && partner.partnerAge >= display.infertileAge && lastTextCount > 3 && infertileText == true )
+		{
+			Comment.text = partner.partnerName + " is too old to have children now.";
+			lastTextCount = 0;
+			infertileText = false;
+			return;
+		}
+		if ( display.playerIsMale == false && display.age >= display.infertileAge && lastTextCount > 3 && infertileText == true )
+		{
+			Comment.text = "You are too old to have children now.";
+			lastTextCount = 0;
+			infertileText = false;
+			return;
+		}
+
+		// Career worries
+		oneOff = Random.Range(0,100);
+		if ( display.aspectvalue[3] < 10 && display.age > 25 && lastTextCount > 3 && oneOff < oneOffValueCareer ) 
+		{
+			Comment.text = "Aren't you a little old to be a student?";
+			lastTextCount = 0;
+			return;
+		}
+		if ( display.aspectvalue[3] < 25 && display.age > 28 && lastTextCount > 3 && oneOff < oneOffValueCareer )
+		{
+			Comment.text = "Aren't you a little old to be an intern?";
+			lastTextCount = 0;
+			return;
+		}
+		if ( display.aspectvalue[3] < 25 && display.age > 30 && lastTextCount > 3 && oneOff < oneOffValueCareer )
+		{
+			Comment.text = "You think it's fine to try a few different jobs before committing to a career.";
+			lastTextCount = 0;
+			return;
+		}
+		oneOff = Random.Range(0,100);
+		if ( display.aspectvalue[3] < 50 && display.age > 30 && display.age < 40 && lastTextCount > 3 && oneOff < oneOffValueCareer )
+		{
+			Comment.text = "You're over 30 and your career still hasn't taken off";
+			lastTextCount = 0;
+			return;
+		}
+		oneOff = Random.Range(0,100);
+		if ( display.aspectvalue[3] < 50 && display.age >= 40 && lastTextCount > 3 && oneOff < oneOffValueCareer )
+		{
+			Comment.text = "You always thought you would achieve more before you were 40.";
+			lastTextCount = 0;
+			return;
+		}
+		oneOff = Random.Range(0,100);
+		if ( display.aspectvalue[3] < (display.age - 16) * 2.7f && display.age < 65 && lastTextCount > 3 && oneOff < oneOffValueCareer )
+		{
+			Comment.text = "You're career isn't going as well as you would like it to.";
+			lastTextCount = 0;
+			return;
+		}
+		oneOff = Random.Range(0,100);
+		if ( display.aspectvalue[3] < (display.age - 16) * 2f && display.age < 65 && lastTextCount > 3 && oneOff < oneOffValueCareer )
+		{
+			Comment.text = "Your friends think your career is a joke.";
+			lastTextCount = 0;
+			return;
+		}
+		oneOff = Random.Range(0,100);
+		if ( display.aspectvalue[3] < (display.age - 16) * 2.7f && display.age < 30 && lastTextCount > 3 && oneOff < oneOffValueCareer )
+		{
+			Comment.text = "Your parents think you should get a real job.";
+			lastTextCount = 0;
+			return;
+		}
+
 
 		// Doubting partner
 
@@ -281,7 +368,6 @@ public class Talk : MonoBehaviour {
 				return;
 			}
 		}
-		// Career worries
 
 
 		// oneOffs
@@ -296,14 +382,16 @@ public class Talk : MonoBehaviour {
 
 		// general status
 		oneOff = Random.Range(0,100);
-		if ( display.durationMonths >= 3 && display.colorName.a <= 0.7f && lastTextCount >= 3 && display.age <= 25 && oneOff < 50)
+		if ( display.durationMonths >= 3 && display.colorName.a <= 0.7f && lastTextCount >= 3 && display.age <= 25 && oneOff < 50 && lastTextCount >= 3)
 		{
 			Comment.text = "You are horny.";
+			lastTextCount = 0;
 			return;
 		}
-		if ( display.durationMonths >= 3 && display.colorName.a <= 0.7f && lastTextCount >= 3)
+		if ( display.durationMonths >= 3 && display.colorName.a <= 0.7f && lastTextCount >= 3 && lastTextCount >= 3)
 		{
 			Comment.text = "You are lonely.";
+			lastTextCount = 0;
 			return;
 		}
 

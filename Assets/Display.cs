@@ -2,13 +2,6 @@
 using System.Collections;
 using UnityEngine.UI;
 
-// counter for months of happiness in different relationships in death summary
-// each aspect has own qualitative descriptors
-// partner has own death time
-// choice of how to date (internet dating / bars / etc.)
-// career or something rather than wealth??
-// accidental pregnancy
-
 public class Display : MonoBehaviour {
 
 	public int fastforward;
@@ -71,6 +64,7 @@ public class Display : MonoBehaviour {
 	public int birthMonth;
 	public int birthYear;
 	private int year;
+	public int infertileAge;
 
 	private string[] months = {"January","February","March","April","May","June","July","August","September","October","November","December"};
 	public float[] aspectvalue = {0,0,0,0};
@@ -133,6 +127,7 @@ public class Display : MonoBehaviour {
 		pausebutton.GetComponent<Button>().interactable = false;
 		playbutton.GetComponent<Button>().interactable = true;
 		fastbutton.GetComponent<Button>().interactable = true;
+		infertileAge = Random.Range (37,45);
 		glowing = true;
 		glowUp = true;
 		glowColor = Glowfade.color;
@@ -518,7 +513,7 @@ public class Display : MonoBehaviour {
 		}
 		if ( impendingDeath == true )
 		{
-			deathColor.a += 1.0f / 12.0f;
+			deathColor.a += 1.0f / 14.0f;
 			Deathfade.color = deathColor;
 		}
 
@@ -532,13 +527,13 @@ public class Display : MonoBehaviour {
 
 	void CanHaveBabies()
 	{
-		if ( playerIsMale == true && partner.partnerAge >= 40)
+		if ( playerIsMale == true && partner.partnerAge >= infertileAge)
 			{
 				canHaveBabies = false;
 				haveBabyButton.SetActive(false);
 				return;	
 			}
-			if ( playerIsMale == false && age >= 40 )
+		if ( playerIsMale == false && age >= infertileAge )
 			{
 				canHaveBabies = false;
 				haveBabyButton.SetActive(false);

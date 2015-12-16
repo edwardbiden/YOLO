@@ -184,6 +184,12 @@ public class Relationship : MonoBehaviour {
 		}
 		myHappiness += myInvestment + yourInvestment;
 
+		// rebound to middle
+		if (myHappiness > 50 )
+		{
+			myHappiness += ((50f - myHappiness) / 25f);
+		}
+
 		if ( myHappiness >= 100 )
 		{
 			myHappiness = 100;

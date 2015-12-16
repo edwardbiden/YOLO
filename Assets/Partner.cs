@@ -111,6 +111,18 @@ public class Partner : MonoBehaviour {
 		}
 	}
 
+	public void WipeEx()
+	{
+		exDuration = 0;
+		exName = "";
+		exHappiness = 0;
+		for (int i =0; i <3; i++)
+		{
+			exvalue[i] = 0;
+		}
+		Debug.Log ("wipe Ex");
+	}
+
 	public void StatsUpdate( float[] statsArray, float[] statsMaxArray, int statsAge, bool male, int children, int divorces, bool player)
 	{
 		// Decide what to do

@@ -7,13 +7,15 @@ public class Display : MonoBehaviour {
 	public int fastforward;
 	public bool quickTime;
 	public int age;
-	private int startAge = 16;
+	private int startAge;
 	public int deathYear;
 	public int deathMonth;
 	public int jumpTime;
+	public bool impendingDeath;
 	public Transform pausebutton;
 	public Transform playbutton;
 	public Transform fastbutton;
+	public Text InvestIn;
 	private bool gowing;
 	private bool glowUp;
 
@@ -93,7 +95,7 @@ public class Display : MonoBehaviour {
 	public GameObject deathPanel;
 	public GameObject birthPanel;
 	public Button startButton;
-	private int monthsSinceBirth;
+	public int monthsSinceBirth;
 	public bool canHaveBabies;
 	public bool startTime;
 	public float maxHappiness;
@@ -112,7 +114,8 @@ public class Display : MonoBehaviour {
 	public Image Glowfade;
 	private float FadeInCycle;
 	private bool FadeIn;
-	private bool impendingDeath;
+
+	private int deathfadeCount;
 
 	private Color tempColor;
 	private Color deathColor;
@@ -140,10 +143,12 @@ public class Display : MonoBehaviour {
 		maleToggle.isOn = true;
 		playerIsMale = true;
 		birthPanel.SetActive(true);
+		deathfadeCount = 0;
 		datingPanel.SetActive(false);
 		deathPanel.SetActive(false);
-		deathYear = 40 + Random.Range(0, 60);
-		deathMonth = Random.Range(0, 12);
+		deathYear = 50 + Random.Range(0, 20) + Random.Range(0, 20) + Random.Range(0, 20);
+		deathMonth = Random.Range(1, 12);
+		startAge = 16;
 		age = startAge;
 		time = 0f;
 		monthsSinceBirth = 0;
@@ -182,6 +187,15 @@ public class Display : MonoBehaviour {
 		relationship.playerpositiveemitter.GetComponent<ParticleSystem>().enableEmission = false;
 		relationship.playernegativeemitter.GetComponent<ParticleSystem>().enableEmission = false;
 
+		for ( int i = 0; i < 3; i++ )
+		{
+			obituary.soNames[i] = "";
+			obituary.soLength[i] = 0;
+			obituary.marriedSO[i] = false;
+			obituary.soChildren[i] = 0;
+		}
+
+
 		if ( Random.Range (0,101) > 50)
 		{
 			nameCount = Random.Range(0,partner.maleNames.Length);
@@ -195,6 +209,11 @@ public class Display : MonoBehaviour {
 		inputNameText.text = playerName;
 		monthInput.text = Random.Range (1,13).ToString();
 		yearInput.text = Random.Range (1950,1995).ToString();
+		impendingDeath = false;
+		hotnessText.text = aspectText[0];
+		personalityText.text = aspectText[1];
+		wealthText.text = aspectText[2];
+		careerText.text = aspectText[3];
 	}
 	
 
@@ -359,6 +378,13 @@ public class Display : MonoBehaviour {
 			relationship.partnerpositiveemitter.GetComponent<ParticleSystem>().enableEmission = false;
 			relationship.partnernegativeemitter.GetComponent<ParticleSystem>().enableEmission = false;
 		}
+		if ( impendingDeath == true )
+		{
+			relationship.partnerpositiveemitter.GetComponent<ParticleSystem>().enableEmission = false;
+			relationship.partnernegativeemitter.GetComponent<ParticleSystem>().enableEmission = false;
+			relationship.playerpositiveemitter.GetComponent<ParticleSystem>().enableEmission = false;
+			relationship.playernegativeemitter.GetComponent<ParticleSystem>().enableEmission = false;
+		}
 
 		relationship.pastpartnerhappiness = relationship.partnerHappiness;
 		relationship.pastplayerhappiness = relationship.playerHappiness;
@@ -367,6 +393,16 @@ public class Display : MonoBehaviour {
 		{
 			Glow ();
 		}
+
+		if ( career.buttonImage.activeSelf || relationship.buttonImage.activeSelf)
+		{
+			InvestIn.text = "Invest in";
+		}
+		else
+		{
+			InvestIn.text = "";
+		}
+
 
 		// update texts last
 		hotnessText.text = aspectText[0];
@@ -455,6 +491,11 @@ public class Display : MonoBehaviour {
 		}
 		duration++;
 
+		if ( duration > partner.exDuration )
+		{
+			partner.WipeEx();
+		}
+
 		if ( pregnant == true ) {
 			pregnancyCount--;
 			if ( pregnancyCount == 0 )
@@ -507,13 +548,18 @@ public class Display : MonoBehaviour {
 			}
 		}
 
-		if ( age + 1 >= deathYear && monthCount >= deathMonth ) 
+		if ( age + 1 == deathYear && monthCount == deathMonth && impendingDeath == false) 
 		{
 			impendingDeath = true;
+			deathfadeCount = 0;
 		}
 		if ( impendingDeath == true )
 		{
-			deathColor.a += 1.0f / 14.0f;
+			deathfadeCount--;
+		}
+		if ( impendingDeath == true && deathfadeCount <= 0 )
+		{
+			deathColor.a += 1.0f / 12.0f;
 			Deathfade.color = deathColor;
 		}
 
@@ -763,7 +809,6 @@ public class Display : MonoBehaviour {
 		deathPanel.SetActive(true);
 		obituary.Write ();
 		BreakUp();
-		impendingDeath = false;
 		deathColor.a = 0f;
 		Deathfade.color = deathColor;
 	}
@@ -777,7 +822,7 @@ public class Display : MonoBehaviour {
 
 	public void GetMarried()
 	{
-		if ( relationship.partnerHappiness >= relationship.marriageThreshold )
+		if ( relationship.partnerHappiness + Random.Range (0,30) >= relationship.marriageThreshold  )
 		{
 			relationship.playerHappiness += 10;
 			relationship.partnerHappiness += 10;
@@ -867,7 +912,7 @@ public class Display : MonoBehaviour {
 
 		if (glowUp == true)
 		{
-			glowColor.a += Time.deltaTime;
+			glowColor.a += Time.deltaTime * 3;
 			Glowfade.color = glowColor;
 		}
 		if (glowUp == false)

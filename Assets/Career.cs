@@ -31,7 +31,7 @@ public class Career : MonoBehaviour {
 
 	void Update ()
 	{
-		if ( display.age <= 65)
+		if ( display.age <= 65 && display.monthsSinceBirth >= 3 )
 		{	
 			buttonImage.SetActive(true);
 		}

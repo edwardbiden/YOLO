@@ -30,6 +30,7 @@ public class Obituary : MonoBehaviour {
 		partner = canvas.GetComponent<Partner>();
 		display = canvas.GetComponent<Display>();
 		previousChildren = 0;
+		tempName = "";
 	}
 
 	public void Relationship ()
@@ -118,7 +119,7 @@ public class Obituary : MonoBehaviour {
 
 		if ( display.relationshipCount > 0 ) 
 		{
-			tombstone.text += "\n\nYour first relationship was with ";
+			tombstone.text += "\n\nYour first crush was ";
 			significantOther( soNames[0], soLength[0], marriedSO [0], soChildren [0]);
 		}
 		if ( soLength[1] > 0 && soLength[1] > soLength[2]) 
@@ -128,12 +129,12 @@ public class Obituary : MonoBehaviour {
 		}
 		if ( soLength[1] > 0 && soLength[1] <= soLength[2]) 
 		{
-			tombstone.text += "\n\nYou were with ";
+			tombstone.text += "\n\nOccasionally you remember ";
 			significantOther( soNames[1], soLength[1], marriedSO [1], soChildren [1]);
 		}
 		if ( soLength[2] > 0 ) 
 		{
-			tombstone.text += "\n\nYour final relationship was with ";
+			tombstone.text += "\n\nYour last love was ";
 			significantOther( soNames[2], soLength[2], marriedSO [2], soChildren [2]);
 		}
 		if ( display.relationshipCount == 0 ) 

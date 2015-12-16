@@ -4945,9 +4945,11 @@ MonoBehaviour:
   deathYear: 0
   deathMonth: 0
   jumpTime: 0
+  impendingDeath: 0
   pausebutton: {fileID: 882710039}
   playbutton: {fileID: 106586700}
   fastbutton: {fileID: 181247962}
+  InvestIn: {fileID: 1965107034}
   time: 0
   count: 0
   alive: 1
@@ -5013,6 +5015,7 @@ MonoBehaviour:
   deathPanel: {fileID: 1833755976}
   birthPanel: {fileID: 57849034}
   startButton: {fileID: 1538133078}
+  monthsSinceBirth: 0
   canHaveBabies: 0
   startTime: 0
   maxHappiness: 0
@@ -5315,7 +5318,7 @@ MonoBehaviour:
   partnerChemistry: 0
   chemistryMin: -1
   chemistryMax: 1
-  babyThreshold: 80
+  babyThreshold: 70
   marriageThreshold: 70
   investEffectPlayer: 0
   investEffectPartner: 0
@@ -8100,7 +8103,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: d90e7a4287d5f46da938253a3e3609f4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7feedb5a6b7db4ec08c41afd7ec38da8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

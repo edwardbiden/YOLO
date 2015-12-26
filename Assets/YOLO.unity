@@ -5318,8 +5318,8 @@ MonoBehaviour:
   partnerChemistry: 0
   chemistryMin: -1
   chemistryMax: 1
-  babyThreshold: 70
-  marriageThreshold: 70
+  babyThreshold: 60
+  marriageThreshold: 60
   investEffectPlayer: 0
   investEffectPartner: 0
   investmentEffect: 0
